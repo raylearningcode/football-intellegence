@@ -37,12 +37,13 @@ teams is large — the stronger side attacks from the opening whistle instead.
 Mexico-Korea 0-0 at HT, the eventual winner not scored until the 50th minute.
 **Evidence (Study Phase collapsed, large gap):** Norway-Iraq H1 already 2-1.
 
-### P3 — Favorite Margin Variance (systematically under-projected)
+### P3 — Favorite Margin Variance (systematically under-projected) *(4 confirmed instances — strong candidate for promotion to a numeric rule)*
 Heavy favorites blow past the model's central score projection more often than expected.
 
-**Evidence:** Germany 7-1, Argentina 3-0 (Messi hat-trick), Canada 6-0.
-**Candidate fix:** add an explicit upside-variance term for composite gaps > 25 points once
-enough data accumulates to calibrate the size of the adjustment properly.
+**Evidence:** Germany 7-1, Argentina 3-0 (Messi hat-trick), Canada 6-0, Netherlands 5-1 (Sweden).
+**Candidate fix:** add an explicit upside-variance term for composite gaps > 20-25 points — four
+confirmed instances now makes this a load-bearing finding, not a tentative pattern. See
+calibration-log.md's Reconciliation TODO for the open task to formalize this into a numbered rule.
 
 ### P4 — The Decider Is Often an Error, Not Clean xG
 In low-event, tightly-matched games specifically, the winning goal frequently comes from a
@@ -116,6 +117,30 @@ than taking the shot themselves.
 **Action:** see Rule #25. Separately weight players who generate chaos/pressure (better suited to
 "involved in a goal" or shots/SCA-based props) from players who are the team's actual intended
 finisher (better suited to standalone anytime-scorer props).
+
+**Counter-example (Netherlands-Sweden):** Cody Gakpo both ASSISTED Brobbey's opener AND scored
+himself later in the same match — elite players genuinely can do both. Treat P7 as a useful
+prior that lowers confidence in a pure creator's standalone scorer odds, not an absolute rule
+that a creator never scores. Always check the individual player's own shot/finishing profile
+before applying the discount.
+
+### P8 — Goals/Corners Decoupling at the Extremes
+A blowout goal margin does NOT automatically mean a high corner count, and vice versa — the two
+are driven by HOW a team scores, not just by how many goals are scored.
+
+**Evidence (blowout, LOW corners):** Netherlands 5-1 Sweden produced just 6 total corners. The
+goals came almost entirely from open-play combination, quick crosses immediately finished, and
+individual quality (Brobbey x2, Gakpo x2, Summerville x1) — not from sustained sieges or repeated
+set-piece routes.
+
+**Evidence (blowout, HIGH corners — the opposite extreme):** Canada 6-0 Qatar produced 18 corners
+to Qatar's 1 — a siege-style blowout where Canada pinned Qatar back for long stretches.
+
+**Action:** Before projecting a corners total from an expected scoreline, check the EXPECTED GOAL
+MECHANISM for the favored team — quick combination/counter-based attacks (lower corners even in a
+blowout) vs. sustained crossing/wide-siege attacks (higher corners, scales with dominance). Don't
+assume "big win = lots of corners" or "big win = doesn't matter, check the actual team-specific
+data" (Rule #11) either way.
 
 ---
 
