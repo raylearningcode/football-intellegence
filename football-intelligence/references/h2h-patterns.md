@@ -46,15 +46,27 @@ enough data accumulates to calibrate the size of the adjustment properly.
 
 ### P4 — The Decider Is Often an Error, Not Clean xG
 In low-event, tightly-matched games specifically, the winning goal frequently comes from a
-goalkeeper or defensive mistake rather than a clearly superior attacking sequence.
+goalkeeper or defensive mistake rather than a clearly superior attacking sequence. **But this is
+NOT universal** — when one team is genuinely stronger and that strength shows up immediately
+(rather than the match being a true coin-flip), the outcome can match the underlying xG cleanly.
 
-**Evidence:** Luis Romo's winner for Mexico came directly off a Kim Seung-gyu goalkeeper error,
-not a clear Mexican attacking move — confirmed by the deep xG review showing Korea (0.67 xG)
-actually out-created Mexico (0.48 xG) in that match.
+**Evidence (error-driven, xG inverted from result):** Luis Romo's winner for Mexico came directly
+off a Kim Seung-gyu goalkeeper error, not a clear Mexican attacking move — confirmed by the deep
+xG review showing Korea (0.67 xG) actually out-created Mexico (0.48 xG) in that match.
 
-**Action:** In tight matchups, don't let a clean pre-match xG read overstate confidence in a
-clean-sheet or "Under" outcome — a single individual error can decide it either way, and that
-error is not something the 16-dimension framework can predict in advance.
+**Evidence (clean quality gap, xG matches result):** Morocco's win over Scotland came from a
+genuine defensive lapse exploited by superior individual quality (Saibari finishing a Díaz
+through-ball after Grant Hanley was caught out) just 71 seconds in — but unlike the Mexico-Korea
+case, the underlying xG (Scotland 0.54, Morocco 0.97) matched the eventual scoreline direction.
+Scotland finished the match without a single shot on target — this was a competence gap showing
+up early and compounding, not a coin-flip decided by one freak moment.
+
+**Action:** In tight matchups (composite gap small, Rule #27 confidence cap applies), expect the
+P4 error-driven pattern. In matchups with a real, even if modest, quality gap, don't assume every
+early goal is "just an error" — check whether the underlying chance quality and game state support
+the goal being the start of a deserved result, not a freak one-off. The distinguishing question:
+did the trailing team generate a meaningful response afterward, or did the gap compound (zero
+shots on target for 90 minutes is a compounding-gap signal, not bad luck)?
 
 ### P5 — Corner Volume Is Game-State Dependent, Not Just Season-Average Dependent
 Corners depend heavily on the specific game state and each team's individual attacking
