@@ -47,9 +47,13 @@ where this left off, point it at this repo first**, or paste in the contents of
 
 ## Current state (update this line whenever you sync)
 
-As of the last sync: **v2.3**, ~10 matches logged across FIFA World Cup 2026, 28 active
-calibration rules. Match-winner accuracy ~75%, BTTS/Over-Under ~63%, corners the weakest market
-at ~28% (see `calibration-log.md`'s Reconciliation TODO for what still needs folding in).
+As of the last sync: **v2.4**, 10 matches fully logged across FIFA World Cup 2026 (all FINAL, none
+pending), 28 active calibration rules. Match-winner accuracy 80% (8/10), Over/Under 2.5 at 70%
+(7/10), corners still the weakest graded market at 28% — though declining to make a low-confidence
+corners call has twice been the right process call rather than a market loss. Cards (directional
+Over/Under calls) sit at 0/2 — Rule #21 (card over-projection in cautious games) is now confirmed
+twice and treated as a strong prior, not a one-off. See `calibration-log.md`'s Reconciliation TODO
+for the small handful of lower-priority items still open.
 
 ## Using this elsewhere
 
