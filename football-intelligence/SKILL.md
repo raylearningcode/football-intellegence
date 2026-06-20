@@ -12,6 +12,9 @@ description: >
 
 # Football Intelligence System — Elite Prediction & Self-Improvement Engine
 
+**Version: v2.3** | Backed up at: https://github.com/raylearningcode/football-intellegence
+(push updates there after significant changes — see that repo's README for why this exists)
+
 ## PURPOSE
 
 Perform a complete multi-dimensional football intelligence investigation and produce the most accurate probability-based prediction possible. Self-audit after every match. Improve calibration weights and analytical precision iteratively.
@@ -32,7 +35,7 @@ If the file doesn't exist yet, initialize it (see PHASE 7).
 
 Apply any active weight adjustments and lessons from prior predictions.
 
-**IMPORTANT — file location fix (v2.3):** this file lives INSIDE the skill folder, not in /tmp. /tmp is volatile scratch space and should never be used for anything meant to persist across matches or sessions. Always read/write the calibration log at the path above.
+**IMPORTANT — file location fix (v2.3):** this file lives INSIDE the skill folder, not in /tmp. /tmp is volatile scratch space and should never be used for anything meant to persist across matches or sessions. Always read/write the calibration log at the path above. This has broken the system's memory more than once — see calibration-log.md's "File-Location Incident" section for the full history before assuming any prior "it's updated" claim is accurate. When in doubt, check the GitHub backup (link above) as the source of truth.
 
 ---
 
@@ -245,7 +248,7 @@ Team | Matches | Avg Minutes | Travel KM | Rest Days
 - Momentum shift indicators
 - Dynamically updated probability
 
-**Game-state rules (learned from calibration — see calibration-log.md rules 8, 9, 9b, 14, 15):**
+**Game-state rules (learned from calibration — see calibration-log.md Rules #19, #20, #23, #24):**
 - Once any goal goes in (own goal, deflection, or otherwise), immediately re-run the goals-market read using GAME STATE, not pre-match tactical identity. Trailing team must commit forward; leading team usually has no incentive to sit back — UNLESS that manager/team has a specific stated "protect the result" pattern.
 - BUT: "team must chase" reliably predicts more SHOTS/CORNERS/CARDS — it does NOT automatically predict more GOALS. Defensive execution quality is a separate variable that can fully absorb game-state pressure. Check the leading team's defensive quality before assuming pressure converts to goals.
 - High possession share (e.g., 80%+) after taking a lead does not by itself mean continued goal threat — cross-check actual shot counts and final-third entries. Passive/circulating possession (control-and-protect) looks different from possession backed by a high shot rate (continued genuine threat). Distinguish the two explicitly.
@@ -258,30 +261,33 @@ Team | Matches | Avg Minutes | Travel KM | Rest Days
 
 ## PHASE 3 — WEIGHTED COMPOSITE SCORING
 
-Default weights (adjust with justification when context demands):
+Default weights (adjust with justification when context demands). **Current adjusted weights are
+v2.1, carried forward from calibration-log.md's Active Weight Table — start from these, not the
+raw defaults, then adjust further per-match if the specific fixture calls for it:**
 
-| Dimension | Default Weight | Adjusted Weight | Justification |
+| Dimension | Default Weight | v2.1 Adjusted | Justification |
 |---|---|---|---|
-| Current Form | 18% | | |
-| Tactical Matchup | 16% | | |
-| Player Availability | 14% | | |
-| Advanced Metrics | 12% | | |
-| Home Advantage | 10% | | |
-| Motivation | 8% | | |
-| Fatigue | 5% | | |
-| Head-to-Head | 4% | | |
-| Team Chemistry | 4% | | |
-| Manager | 3% | | |
-| Referee | 2% | | |
-| Market Analysis | 2% | | |
-| Weather | 1% | | |
-| News & Sentiment | 1% | | |
+| Current Form | 18% | 16% | xG-form projections missed goal volume in several matches |
+| Tactical Matchup | 16% | 18% | Decisive in 4/8 matches (bus-parking, press intensity) |
+| Player Availability | 14% | 15% | Montes suspension pivotal; key injuries underweighted |
+| Advanced Metrics | 12% | 10% | Possession metrics misleading (Rule #15) |
+| Home Advantage | 10% | 10% | Unchanged |
+| Motivation & Bracket Context | 8% | 8% | Scope expanded (Rule #22), weight unchanged so far |
+| Fatigue | 5% | 5% | Unchanged |
+| Head-to-Head | 4% | 4% | Unchanged |
+| Team Chemistry | 4% | 4% | Unchanged |
+| Manager | 3% | 3% | Unchanged |
+| Referee | 2% | 3% | England-Croatia card impact underweighted |
+| Market Analysis | 2% | 2% | Unchanged |
+| Weather | 1% | 1% | Unchanged |
+| News & Sentiment | 1% | 1% | Unchanged |
 | **TOTAL** | **100%** | **100%** | |
 
 Calculate:
 - Home Composite Score
 - Away Composite Score
-- Draw Indicator (closeness of scores + historical draw rate in this matchup type)
+- Draw Indicator (closeness of scores + historical draw rate in this matchup type — see Rule #13
+  for World Cup-specific hardcoded draw floors that should never be undercut)
 
 ---
 
@@ -455,35 +461,22 @@ After the match result is known, run this improvement loop.
 
 ### 7.1 Outcome Logging
 
-Append to `/mnt/skills/user/football-intelligence/references/calibration-log.md`:
+Append a new entry to the "Match Log" section of
+`/mnt/skills/user/football-intelligence/references/calibration-log.md`, following the format
+already established there (see existing entries #1-10 for the actual structure in use):
 
 ```markdown
-## Match: [Home] vs [Away] | [Date]
-
-**Predicted:** Home XX% / Draw XX% / Away XX%
-**Actual Result:** [Score]
-**Predicted Score:** [X-X] | **Actual Score:** [X-X]
-**Predicted BTTS:** [Yes/No XX%] | **Actual:** [Yes/No]
-**Predicted O2.5:** [XX%] | **Actual:** [Over/Under]
-
-### What I Got Right
-- [...]
-
-### What I Got Wrong
-- [...]
-
-### Root Cause of Errors
-- [Over/underweighted which factor?]
-- [Missing data?]
-- [Black swan event?]
-
-### Calibration Adjustments
-- [Factor X weight: increase/decrease by Y%]
-- [New heuristic: ...]
-
-### Lessons for Next Analysis
-- [...]
+### N. [Home] [Score] [Away] — FINAL (or IN PROGRESS) [Competition/Stage, Date]
+- Predicted: Home XX% / Draw XX% / Away XX%. Leans: [market 1], [market 2], [market 3].
+- Actual: [score]. Scorer(s)/key moments with minute markers.
+- Stats (via MCP or web search): possession, shots, corners, cards — cite the source.
+- Grade: [Market] ✓/✗ for each major lean, with a one-line reason for each miss.
+- New rule(s) born from this match, if any — write the rule directly into the "Active
+  Calibration Rules" section above (using the next available rule number) and reference it here.
 ```
+
+This richer format (vs. a generic fill-in-the-blanks template) is what's actually been used in
+practice — match log entries should read like a genuine post-mortem, not a checklist.
 
 ### 7.2 Weight Recalibration Rules
 
