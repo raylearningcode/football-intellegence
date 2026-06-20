@@ -47,13 +47,16 @@ where this left off, point it at this repo first**, or paste in the contents of
 
 ## Current state (update this line whenever you sync)
 
-As of the last sync: **v2.4**, 10 matches fully logged across FIFA World Cup 2026 (all FINAL, none
-pending), 28 active calibration rules. Match-winner accuracy 80% (8/10), Over/Under 2.5 at 70%
-(7/10), corners still the weakest graded market at 28% — though declining to make a low-confidence
-corners call has twice been the right process call rather than a market loss. Cards (directional
-Over/Under calls) sit at 0/2 — Rule #21 (card over-projection in cautious games) is now confirmed
-twice and treated as a strong prior, not a one-off. See `calibration-log.md`'s Reconciliation TODO
-for the small handful of lower-priority items still open.
+As of the last sync: **v2.5**, 11 matches fully logged across FIFA World Cup 2026 (all FINAL, none
+pending), 28 active calibration rules. Match-winner accuracy 82% (9/11), Over/Under 2.5 at 73%
+(8/11), BTTS at 67% (6/9). Corners remain the weakest GRADED market (28%), but Rule #11's actual
+audit process is now 3/3 when properly applied (Mexico-Korea, Scotland-Morocco, Netherlands-
+Sweden) — the lesson is "pull real team-specific corner data first," not "corners are
+unpredictable." New Pattern P8 (goals/corners decoupling at the extremes — even a 5-1 blowout
+produced only 6 corners). Favorite-margin-variance now has 4 confirmed instances (Germany 7-1,
+Argentina 3-0, Canada 6-0, Netherlands 5-1) and is flagged as the top-priority item to formalize
+into a real numeric rule next. See `calibration-log.md`'s Reconciliation TODO for the full list
+of open items.
 
 ## Using this elsewhere
 
