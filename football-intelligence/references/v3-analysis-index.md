@@ -12,15 +12,18 @@ For every full match analysis, read references in this order:
 2. `match-research-protocol.md`
 3. `simulation-protocol.md`
 4. `manager-profiles.md`
-5. `game-state-engine.md`
-6. `set-piece-model.md`
-7. `referee-model.md`
-8. `uncertainty-engine.md`
-9. `calibration-error-taxonomy.md`
-10. `h2h-patterns.md`
-11. `league-profiles.md`
+5. `team-player-profile-schema.md`
+6. `player-movement-model.md`
+7. `game-state-engine.md`
+8. `set-piece-model.md`
+9. `referee-model.md`
+10. `uncertainty-engine.md`
+11. `calibration-error-taxonomy.md`
+12. `match-stat-log-template.md`
+13. `h2h-patterns.md`
+14. `league-profiles.md`
 
-The original 16-dimension model remains the backbone. The v3 modules add deeper football realism and anti-blind-spot checks.
+The original 16-dimension model remains the backbone. The v3 modules add deeper football realism, player-movement awareness, post-match evidence capture, and anti-blind-spot checks.
 
 ---
 
@@ -38,11 +41,14 @@ Collect:
 - Lineups and availability
 - Tactical setup
 - Manager context
+- Team/player profiles
+- Player movement data when available
 - Group/table context
 - Weather and venue
 - Referee
 - Set-piece profiles
 - Recent xG/shot data
+- Match-stat logs from recent games
 - Market/consensus if relevant
 
 Grade evidence quality using the match research protocol.
@@ -61,9 +67,9 @@ Answer:
 
 Do not assume a useful draw means passivity. Do not assume a must-win situation means reckless attack.
 
-### Phase 3 — Phase-of-Play Map
+### Phase 3 — Player Movement and Phase-of-Play Map
 
-Use the original tactical dimension plus the v3 modules.
+Use `player-movement-model.md`, `team-player-profile-schema.md`, and the original tactical dimension.
 
 Map:
 
@@ -74,6 +80,13 @@ Map:
 - Transition moments
 - Set-piece mismatches
 - Referee flow effects
+- Key player receiving zones
+- Key player carry zones
+- Actual finishers vs creators
+- Wide overloads and corner mechanisms
+- Defensive movement weaknesses
+
+Do not confuse formation with role. Do not confuse the most famous player with the actual finisher.
 
 ### Phase 4 — Game-State Scenario Tree
 
@@ -136,27 +149,64 @@ Main blind spot:
 Best live trigger to update:
 ```
 
-### Phase 8 — Post-Match Calibration
+### Phase 8 — Post-Match Stat Log
+
+Use `match-stat-log-template.md` before writing calibration lessons.
+
+Capture:
+
+- Possession
+- Shots
+- Shots on target
+- Big chances/xG if available
+- Corners
+- Fouls/cards
+- Offsides
+- Goal timeline
+- Substitutions
+- Player movement notes
+- Heatmap/touch-map notes
+- Set-piece quality
+- Referee flow
+- Game-state changes
+
+Never calibrate from scoreline alone.
+
+### Phase 9 — Post-Match Calibration
 
 Use `calibration-error-taxonomy.md`.
 
-Classify errors before changing rules. Do not overfit to random events.
+Classify errors before changing rules. Do not overfit to random events. Update team and player profiles only when the mechanism appears repeatable.
 
 ---
 
 ## Required v3 Output Sections
 
-Every serious report must include:
+Every serious pre-match report must include:
 
 1. Coach Gameplan Read
-2. Tactical Phase Map
-3. Set-Piece Audit
-4. Referee Flow Read
-5. Game-State Sensitivity
-6. Simulation Summary
-7. Uncertainty Audit
-8. Final Forecast
-9. Post-Match Calibration Note if reviewing result
+2. Team and Player Profile Read
+3. Player Movement Audit
+4. Tactical Phase Map
+5. Set-Piece Audit
+6. Referee Flow Read
+7. Game-State Sensitivity
+8. Simulation Summary
+9. Uncertainty Audit
+10. Final Forecast
+
+Every serious post-match review must include:
+
+1. Match Stat Log
+2. Goal Timeline
+3. Team Stats vs Scoreline Check
+4. Player Movement Review
+5. Game-State Review
+6. Set-Piece and Referee Review
+7. Simulation Review
+8. Calibration Error Classification
+9. Team/Player Profile Updates Needed
+10. Final Lesson
 
 ---
 
@@ -174,22 +224,32 @@ Every serious report must include:
 10. No-edge is a valid conclusion.
 11. Wrong predictions are not always bad analysis.
 12. Do not create new rules from random variance.
+13. Scoreline is not dominance.
+14. Formation is not role.
+15. Team stats are not player movement.
+16. Creator and finisher must be separated.
+17. Corner volume requires a mechanism, not just possession.
+18. Heatmaps and touch maps override assumed positions when available.
 
 ---
 
 ## Model Version Note
 
-This index marks the framework's practical transition toward v3.0. The model is now intended to work as:
+This index marks the framework's practical transition toward v3.1. The model is now intended to work as:
 
 ```text
 Calibration Memory
 + 16-Dimension Analysis
++ Match Research Protocol
++ Simulation Protocol
 + Coach Behavior Model
++ Team and Player Profiles
++ Player Movement / Heatmap Model
 + Game-State Engine
 + Set-Piece Model
 + Referee Flow Model
-+ Simulation Protocol
 + Uncertainty Engine
++ Match Stat Log
 + Calibration Error Taxonomy
 ```
 
