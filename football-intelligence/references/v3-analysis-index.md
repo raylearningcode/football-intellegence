@@ -1,256 +1,93 @@
-# Football Intelligence v3 — Analysis Module Index
+# Football Intelligence Analysis Index — v2.7
 
-Purpose: define how the expanded v3 framework should be used in every serious match forecast. This file connects the original 16-dimension model with the newer deeper-analysis modules.
+## System Status
 
----
+**Current Version:** v2.7 (Tunisia-Japan completed)
+**Matches Logged:** 13 (all pre-kickoff predictions)
+**Running Accuracy:**
+- Match Winner: 84.6% (11/13)
+- Over/Under 2.5 Goals: 76.9% (10/13)
+- Correct Score: 0% (0/9) — known limitation; Rule #34 addresses
+- Corner Markets: 20% (1/5) directional calls; corner 1x2 100% (1/1 limited sample)
 
-## Required Reference Order
-
-For every full match analysis, read references in this order:
-
-1. `calibration-log.md`
-2. `match-research-protocol.md`
-3. `simulation-protocol.md`
-4. `manager-profiles.md`
-5. `team-player-profile-schema.md`
-6. `player-movement-model.md`
-7. `game-state-engine.md`
-8. `set-piece-model.md`
-9. `referee-model.md`
-10. `uncertainty-engine.md`
-11. `calibration-error-taxonomy.md`
-12. `match-stat-log-template.md`
-13. `h2h-patterns.md`
-14. `league-profiles.md`
-
-The original 16-dimension model remains the backbone. The v3 modules add deeper football realism, player-movement awareness, post-match evidence capture, and anti-blind-spot checks.
+**Active Rules:** 36 (+ 10 patterns)
+**Most Recent Rules Added:** #32–36 (v2.7)
 
 ---
 
-## v3 Forecast Workflow
+## Rules by Category
 
-### Phase 0 — Calibration Read
+### Match Result & Form Rules (1–9)
+- **Rule #1:** Study Phase Modifier (quality-gap dependent HT discount)
+- **Rule #2:** Correct-Score Tail (+1 goal undershoot correction)
+- **Rule #3:** Elite Late Surge (+0.7 xG in 70'–90')
+- **Rule #4:** High-Press HT Discount (−10% HT Over 0.5 confidence)
+- **Rule #5:** Set-Piece Efficiency (high-PPDA teams)
+- **Rule #6:** Halftime Reset Multiplier (SH2 goals more likely)
+- **Rule #7:** Mandatory Corner-Mechanism Audit
+- **Rule #8:** BTTS Model (xG-based)
+- **Rule #9:** Red-Card Live-Adjustment
 
-Read calibration rules first. Apply active lessons and confidence caps.
+### Tactical & Execution Rules (10–16, 19–20)
+- **Rule #10:** Early-Goal Corner Collapse
+- **Rule #11:** Static Corner Audit (player-movement based; NOW possession-conditional)
+- **Rule #15:** Possession Paradox (territorial dominance ≠ goal probability)
+- **Rule #16:** Central-Play Corner Penalty (−3 corners for midfielder-heavy teams)
+- **Rule #19:** Timeline Segmentation (don't anchor explanations on most dramatic event)
+- **Rule #20:** Red-Card Live-Adjustment (SH2 remaining-match markets only)
 
-### Phase 1 — Evidence Collection
+### Manager & Team Chemistry (21–32)
+- **Rule #21:** Card Over-Projection in Cautious Games (−5 to −8 on Over 4.5)
+- **Rule #22:** Mandatory Bracket/Standings/GD/Remaining-Fixture Check (PHASE-0)
+- **Rule #23:** Motivation Bonus (must-win situations unlock aggression, if morale intact)
+- **Rule #25–28:** Anytime-Scorer Props (creator vs. finisher, service dependency)
+- **Rule #32:** Manager-Hire Prep-Time Discount (non-linear decay, <7 days = hard constraint)
 
-Collect:
+### Morale & Psychological Rules (29–36)
+- **Rule #29:** Rookie-Team Tournament Shock Ceiling (early underdog lead, SH2 elite reassertion)
+- **Rule #30:** Corner Explosion in Comeback Scenarios (+50–75% on SH2 corners for chasing elite)
+- **Rule #31:** Substitute Quality Multiplier (elite benches +0.4–0.6 xG in SH2 when chasing)
+- **Rule #33:** Catastrophic-Loss Morale Discount (−0.4 to −0.7 xG, age-dependent)
+- **Rule #34:** Blowout Score Tail (quality gap >25 pts; redistribute Poisson for 3+ margins)
+- **Rule #35:** Early-Tournament Morale Fragility (age-dependent, ≥5-goal loss recovery)
+- **Rule #36:** H2H Psychological Ceiling (never-conceded dominance adds +2–3% to favorite)
 
-- Current form
-- Lineups and availability
-- Tactical setup
-- Manager context
-- Team/player profiles
-- Player movement data when available
-- Group/table context
-- Weather and venue
-- Referee
-- Set-piece profiles
-- Recent xG/shot data
-- Match-stat logs from recent games
-- Market/consensus if relevant
-
-Grade evidence quality using the match research protocol.
-
-### Phase 2 — Coach and Tactical Intent
-
-Use `manager-profiles.md` and `match-research-protocol.md`.
-
-Answer:
-
-- What does each coach want?
-- What does each coach fear?
-- What result is acceptable?
-- What game state is ideal?
-- What is the tactical cost of each plan?
-
-Do not assume a useful draw means passivity. Do not assume a must-win situation means reckless attack.
-
-### Phase 3 — Player Movement and Phase-of-Play Map
-
-Use `player-movement-model.md`, `team-player-profile-schema.md`, and the original tactical dimension.
-
-Map:
-
-- Team A in possession
-- Team B in possession
-- Team A out of possession
-- Team B out of possession
-- Transition moments
-- Set-piece mismatches
-- Referee flow effects
-- Key player receiving zones
-- Key player carry zones
-- Actual finishers vs creators
-- Wide overloads and corner mechanisms
-- Defensive movement weaknesses
-
-Do not confuse formation with role. Do not confuse the most famous player with the actual finisher.
-
-### Phase 4 — Game-State Scenario Tree
-
-Use `game-state-engine.md`.
-
-Forecast at minimum:
-
-- Favorite scores first
-- Underdog scores first
-- Level at halftime
-- Favorite leads late
-- Red card or substitution shock if relevant
-
-### Phase 5 — Simulation
-
-Use `simulation-protocol.md`.
-
-Translate football assumptions into numerical inputs. Run repeated match simulations when possible. If simulation is not run, state it and cap confidence.
-
-Simulation must produce:
-
-- Result probabilities
-- Goal distribution
-- Corner distribution
-- Correct-score distribution
-- Main uncertainty
-- Tactical/simulation disagreement
-
-### Phase 6 — Uncertainty Audit
-
-Use `uncertainty-engine.md`.
-
-Separate:
-
-- Estimated probability
-- Confidence in the estimate
-
-State:
-
-- Confidence reducers
-- Confidence boosters
-- No-edge risk
-- Data that would change the forecast
-
-### Phase 7 — Final Forecast
-
-Final output should include:
-
-```markdown
-## Final Forecast
-
-Result probabilities:
-Goal outlook:
-Corner outlook:
-Correct-score range:
-Confidence:
-Best supported angles:
-Angles to avoid:
-Main blind spot:
-Best live trigger to update:
-```
-
-### Phase 8 — Post-Match Stat Log
-
-Use `match-stat-log-template.md` before writing calibration lessons.
-
-Capture:
-
-- Possession
-- Shots
-- Shots on target
-- Big chances/xG if available
-- Corners
-- Fouls/cards
-- Offsides
-- Goal timeline
-- Substitutions
-- Player movement notes
-- Heatmap/touch-map notes
-- Set-piece quality
-- Referee flow
-- Game-state changes
-
-Never calibrate from scoreline alone.
-
-### Phase 9 — Post-Match Calibration
-
-Use `calibration-error-taxonomy.md`.
-
-Classify errors before changing rules. Do not overfit to random events. Update team and player profiles only when the mechanism appears repeatable.
+### Context & Data Rules (4-year cap, bracket, weather)
+- **Rule #18:** 4-Year Data Cap (H2H and form data older than 4 years excluded)
+- **Rule #22:** Mandatory Bracket Context (Rule expanded to morale baseline check)
+- Weather rules: Neutral (1% weight)
 
 ---
 
-## Required v3 Output Sections
+## Patterns (10 total)
 
-Every serious pre-match report must include:
+1. **P1–P8:** Existing (reference v2.5 for details)
+2. **P9:** Rookie-Team Shock + Elite Response Cycle (Rule #29 formalization)
+   - Early underdog shock (1-0 lead HT vs. elite)
+   - Elite adaptation in SH2
+   - Underdog mental collapse due to experience gap
+   - Result: Elite win, often by narrow margin (2-1, 2-0)
+   - Example: Germany 2-1 Ivory Coast (MD2)
 
-1. Coach Gameplan Read
-2. Team and Player Profile Read
-3. Player Movement Audit
-4. Tactical Phase Map
-5. Set-Piece Audit
-6. Referee Flow Read
-7. Game-State Sensitivity
-8. Simulation Summary
-9. Uncertainty Audit
-10. Final Forecast
-
-Every serious post-match review must include:
-
-1. Match Stat Log
-2. Goal Timeline
-3. Team Stats vs Scoreline Check
-4. Player Movement Review
-5. Game-State Review
-6. Set-Piece and Referee Review
-7. Simulation Review
-8. Calibration Error Classification
-9. Team/Player Profile Updates Needed
-10. Final Lesson
+3. **P10 (NEW):** Early-Tournament Demoralization Collapse (Rules #33, #35 formalization)
+   - Underdog suffers ≥5-goal loss in MD1/MD2
+   - Manager sacked OR new manager hired <7 days (Rule #32)
+   - Team age older (avg ≥30 years)
+   - Psychological breakdown from kickoff of next match
+   - No shock (no early lead); never competes
+   - Result: Elite blowout (3–4 goal margin)
+   - Example: Tunisia 0-4 Japan (MD2)
 
 ---
 
-## v3 Anti-Blind-Spot Commandments
+## Next Development Focus (v2.8)
 
-1. Possession is not goal threat.
-2. Motivation is not behavior unless translated tactically.
-3. A useful draw does not automatically create passivity.
-4. A must-win situation does not automatically create attacking quality.
-5. Set pieces are separate from open play.
-6. Game state changes volume faster than it changes conversion.
-7. Referee style changes match flow.
-8. Manager behavior is state-dependent.
-9. Probability and confidence are different.
-10. No-edge is a valid conclusion.
-11. Wrong predictions are not always bad analysis.
-12. Do not create new rules from random variance.
-13. Scoreline is not dominance.
-14. Formation is not role.
-15. Team stats are not player movement.
-16. Creator and finisher must be separated.
-17. Corner volume requires a mechanism, not just possession.
-18. Heatmaps and touch maps override assumed positions when available.
+1. **Correct-Score Modeling:** Implement Rule #34 in live analysis; monitor if adjusted distributions improve accuracy from 0%
+2. **Manager Effectiveness Decay:** Refine Rule #32 formula; test non-linear decay with morale interaction
+3. **Age-Demographic Resilience:** Confirm Rule #35 across next 3–4 matches with age-based team data
+4. **Possession-Conditional Corners:** Implement revised Rule #11 with possession % conditioning
+5. **Blowout Scenario Database:** Catalog all quality-gap >25pt matches (Tunisia-Japan, Germany-Curaçao 7-1, etc.) to calibrate Rule #34 distribution
 
 ---
 
-## Model Version Note
-
-This index marks the framework's practical transition toward v3.1. The model is now intended to work as:
-
-```text
-Calibration Memory
-+ 16-Dimension Analysis
-+ Match Research Protocol
-+ Simulation Protocol
-+ Coach Behavior Model
-+ Team and Player Profiles
-+ Player Movement / Heatmap Model
-+ Game-State Engine
-+ Set-Piece Model
-+ Referee Flow Model
-+ Uncertainty Engine
-+ Match Stat Log
-+ Calibration Error Taxonomy
-```
-
-The goal is not to predict every match perfectly. The goal is to produce disciplined, evidence-aware, football-realistic forecasts that improve over time without overfitting.
+**Index Updated v2.7. Ready for MD3 and knockout-stage analysis.**
