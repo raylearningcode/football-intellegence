@@ -1,0 +1,742 @@
+# World Cup 2026 match dataset
+# Updated: 2026-06-23 15:15 Asia/Taipei
+# Coverage: all completed matches available from MD1 through Jordan 1-2 Algeria on 2026-06-23 UTC+8.
+# Source basis: World Cup schedule/game source in current analysis session plus spot web verification for Jordan-Algeria.
+# Important: This file is complete for match identity, kickoff, group, status, and final score.
+# Detailed event/stat fields are included and explicitly marked unknown where not source-verified.
+# Do not fill unknown stats from memory or assumption.
+
+metadata:
+  tournament: FIFA World Cup 2026
+  data_version: wc2026-md1-md2-through-20260623-v1
+  updated_at: 2026-06-23T15:15:00+08:00
+  completed_matches_count: 44
+  completeness:
+    match_identity_scores_status: complete
+    official_detailed_stats: partial
+    reason: >-
+      The available schedule/game source confirms all completed matches, scores, groups,
+      kickoff times, and statuses through Jordan-Algeria. Official full stat packs
+      such as xG, shots, shots on target, corners, cards, fouls, lineups, referee,
+      and substitutions are not fully available for every match in the current verified
+      source set and must remain null until reliable match-centre data is fetched.
+  required_unfilled_fields_per_match:
+    - referee
+    - venue
+    - weather
+    - halftime_score
+    - goals
+    - lineups
+    - substitutions
+    - xg
+    - shots
+    - shots_on_target
+    - possession
+    - corners
+    - corner_times
+    - cards
+    - fouls
+    - offsides
+    - betting_market_closing_lines
+    - pre_match_prediction_link
+    - post_match_reconciliation_link
+  verified_special_cases:
+    jordan_algeria:
+      score: Jordan 1-2 Algeria
+      key_events_verified:
+        - Jordan led 1-0 through Nizar Al-Rashdan in the 36th minute.
+        - Algeria equalized through Nadhir Benbouali from a Riyad Mahrez corner.
+        - Algeria winner by Amine Gouiri from a corner/set-piece scramble.
+      analytic_status: corner_calibration_addendum_created
+
+matches:
+  - game_id: 66456904
+    date_taipei: 2026-06-12
+    kickoff_taipei: 2026-06-12T03:00:00+08:00
+    group: A
+    team_a: Mexico
+    team_a_code: MEX
+    score_a: 2
+    team_b: South Africa
+    team_b_code: RSA
+    score_b: 0
+    status: complete
+    matchday_phase: MD1
+    detailed_stats_status: missing_official_stats
+    priority_reconciliation: normal
+    notes: []
+  - game_id: 66456906
+    date_taipei: 2026-06-12
+    kickoff_taipei: 2026-06-12T10:00:00+08:00
+    group: A
+    team_a: South Korea
+    team_a_code: KOR
+    score_a: 2
+    team_b: Czechia
+    team_b_code: CZE
+    score_b: 1
+    status: complete
+    matchday_phase: MD1
+    detailed_stats_status: missing_official_stats
+    priority_reconciliation: normal
+    notes: []
+  - game_id: 66456916
+    date_taipei: 2026-06-13
+    kickoff_taipei: 2026-06-13T03:00:00+08:00
+    group: B
+    team_a: Canada
+    team_a_code: CAN
+    score_a: 1
+    team_b: Bosnia and Herzegovina
+    team_b_code: BIH
+    score_b: 1
+    status: complete
+    matchday_phase: MD1
+    detailed_stats_status: missing_official_stats
+    priority_reconciliation: normal
+    notes: []
+  - game_id: 66456940
+    date_taipei: 2026-06-13
+    kickoff_taipei: 2026-06-13T09:00:00+08:00
+    group: D
+    team_a: United States
+    team_a_code: USA
+    score_a: 4
+    team_b: Paraguay
+    team_b_code: PAR
+    score_b: 1
+    status: complete
+    matchday_phase: MD1
+    detailed_stats_status: missing_official_stats
+    priority_reconciliation: high
+    notes:
+      - Pattern file references USA-Australia later for creator-vs-finisher; this match still needs full stats.
+  - game_id: 66456918
+    date_taipei: 2026-06-14
+    kickoff_taipei: 2026-06-14T03:00:00+08:00
+    group: B
+    team_a: Qatar
+    team_a_code: QAT
+    score_a: 1
+    team_b: Switzerland
+    team_b_code: SUI
+    score_b: 1
+    status: complete
+    matchday_phase: MD1
+    detailed_stats_status: missing_official_stats
+    priority_reconciliation: normal
+    notes: []
+  - game_id: 66456928
+    date_taipei: 2026-06-14
+    kickoff_taipei: 2026-06-14T06:00:00+08:00
+    group: C
+    team_a: Brazil
+    team_a_code: BRA
+    score_a: 1
+    team_b: Morocco
+    team_b_code: MAR
+    score_b: 1
+    status: complete
+    matchday_phase: MD1
+    detailed_stats_status: missing_official_stats
+    priority_reconciliation: high
+    notes:
+      - Draw-floor case for heavyweight favorite vs strong underdog.
+  - game_id: 66456930
+    date_taipei: 2026-06-14
+    kickoff_taipei: 2026-06-14T09:00:00+08:00
+    group: C
+    team_a: Haiti
+    team_a_code: HTI
+    score_a: 0
+    team_b: Scotland
+    team_b_code: SCO
+    score_b: 1
+    status: complete
+    matchday_phase: MD1
+    detailed_stats_status: missing_official_stats
+    priority_reconciliation: normal
+    notes: []
+  - game_id: 66456942
+    date_taipei: 2026-06-14
+    kickoff_taipei: 2026-06-14T12:00:00+08:00
+    group: D
+    team_a: Australia
+    team_a_code: AUS
+    score_a: 2
+    team_b: Turkey
+    team_b_code: TUR
+    score_b: 0
+    status: complete
+    matchday_phase: MD1
+    detailed_stats_status: missing_official_stats
+    priority_reconciliation: normal
+    notes: []
+  - game_id: 66457070
+    date_taipei: 2026-06-15
+    kickoff_taipei: 2026-06-15T01:00:00+08:00
+    group: E
+    team_a: Germany
+    team_a_code: GER
+    score_a: 7
+    team_b: Curacao
+    team_b_code: CUW
+    score_b: 1
+    status: complete
+    matchday_phase: MD1
+    detailed_stats_status: missing_official_stats
+    priority_reconciliation: critical
+    notes:
+      - Blowout-tail underprojection case.
+  - game_id: 66456968
+    date_taipei: 2026-06-15
+    kickoff_taipei: 2026-06-15T04:00:00+08:00
+    group: F
+    team_a: Netherlands
+    team_a_code: NED
+    score_a: 2
+    team_b: Japan
+    team_b_code: JPN
+    score_b: 2
+    status: complete
+    matchday_phase: MD1
+    detailed_stats_status: missing_official_stats
+    priority_reconciliation: high
+    notes:
+      - Draw-floor and high-quality balanced matchup case.
+  - game_id: 66457072
+    date_taipei: 2026-06-15
+    kickoff_taipei: 2026-06-15T07:00:00+08:00
+    group: E
+    team_a: Ivory Coast
+    team_a_code: CIV
+    score_a: 1
+    team_b: Ecuador
+    team_b_code: ECU
+    score_b: 0
+    status: complete
+    matchday_phase: MD1
+    detailed_stats_status: missing_official_stats
+    priority_reconciliation: normal
+    notes: []
+  - game_id: 66456970
+    date_taipei: 2026-06-15
+    kickoff_taipei: 2026-06-15T10:00:00+08:00
+    group: F
+    team_a: Sweden
+    team_a_code: SWE
+    score_a: 5
+    team_b: Tunisia
+    team_b_code: TUN
+    score_b: 1
+    status: complete
+    matchday_phase: MD1
+    detailed_stats_status: missing_official_stats
+    priority_reconciliation: high
+    notes:
+      - Blowout candidate; compare with Netherlands-Sweden MD2.
+  - game_id: 66456994
+    date_taipei: 2026-06-16
+    kickoff_taipei: 2026-06-16T00:00:00+08:00
+    group: H
+    team_a: Spain
+    team_a_code: ESP
+    score_a: 0
+    team_b: Cape Verde
+    team_b_code: CPV
+    score_b: 0
+    status: complete
+    matchday_phase: MD1
+    detailed_stats_status: missing_official_stats
+    priority_reconciliation: critical
+    notes:
+      - Draw-floor and favorite-possession-paradox case.
+  - game_id: 66456982
+    date_taipei: 2026-06-16
+    kickoff_taipei: 2026-06-16T03:00:00+08:00
+    group: G
+    team_a: Belgium
+    team_a_code: BEL
+    score_a: 1
+    team_b: Egypt
+    team_b_code: EGY
+    score_b: 1
+    status: complete
+    matchday_phase: MD1
+    detailed_stats_status: missing_official_stats
+    priority_reconciliation: high
+    notes:
+      - Needed for Belgium-Iran prior baseline.
+  - game_id: 66456996
+    date_taipei: 2026-06-16
+    kickoff_taipei: 2026-06-16T06:00:00+08:00
+    group: H
+    team_a: Saudi Arabia
+    team_a_code: KSA
+    score_a: 1
+    team_b: Uruguay
+    team_b_code: URU
+    score_b: 1
+    status: complete
+    matchday_phase: MD1
+    detailed_stats_status: missing_official_stats
+    priority_reconciliation: normal
+    notes: []
+  - game_id: 66456984
+    date_taipei: 2026-06-16
+    kickoff_taipei: 2026-06-16T09:00:00+08:00
+    group: G
+    team_a: Iran
+    team_a_code: IRI
+    score_a: 2
+    team_b: New Zealand
+    team_b_code: NZL
+    score_b: 2
+    status: complete
+    matchday_phase: MD1
+    detailed_stats_status: missing_official_stats
+    priority_reconciliation: high
+    notes:
+      - Needed for Belgium-Iran prior baseline.
+  - game_id: 66457006
+    date_taipei: 2026-06-17
+    kickoff_taipei: 2026-06-17T03:00:00+08:00
+    group: I
+    team_a: France
+    team_a_code: FRA
+    score_a: 3
+    team_b: Senegal
+    team_b_code: SEN
+    score_b: 1
+    status: complete
+    matchday_phase: MD1
+    detailed_stats_status: missing_official_stats
+    priority_reconciliation: high
+    notes:
+      - Study-phase pattern case.
+  - game_id: 66457008
+    date_taipei: 2026-06-17
+    kickoff_taipei: 2026-06-17T06:00:00+08:00
+    group: I
+    team_a: Iraq
+    team_a_code: IRQ
+    score_a: 1
+    team_b: Norway
+    team_b_code: NOR
+    score_b: 4
+    status: complete
+    matchday_phase: MD1
+    detailed_stats_status: missing_official_stats
+    priority_reconciliation: high
+    notes:
+      - Aggressive mid-press vs quality favorite case.
+  - game_id: 66457018
+    date_taipei: 2026-06-17
+    kickoff_taipei: 2026-06-17T09:00:00+08:00
+    group: J
+    team_a: Argentina
+    team_a_code: ARG
+    score_a: 3
+    team_b: Algeria
+    team_b_code: DZA
+    score_b: 0
+    status: complete
+    matchday_phase: MD1
+    detailed_stats_status: missing_official_stats
+    priority_reconciliation: critical
+    notes:
+      - Algeria baseline before Jordan comeback.
+  - game_id: 66457020
+    date_taipei: 2026-06-17
+    kickoff_taipei: 2026-06-17T12:00:00+08:00
+    group: J
+    team_a: Austria
+    team_a_code: AUT
+    score_a: 3
+    team_b: Jordan
+    team_b_code: JOR
+    score_b: 1
+    status: complete
+    matchday_phase: MD1
+    detailed_stats_status: missing_official_stats
+    priority_reconciliation: critical
+    notes:
+      - Jordan baseline before Algeria comeback.
+  - game_id: 66457030
+    date_taipei: 2026-06-18
+    kickoff_taipei: 2026-06-18T01:00:00+08:00
+    group: K
+    team_a: Portugal
+    team_a_code: POR
+    score_a: 1
+    team_b: DR Congo
+    team_b_code: COD
+    score_b: 1
+    status: complete
+    matchday_phase: MD1
+    detailed_stats_status: missing_official_stats
+    priority_reconciliation: critical
+    notes:
+      - Possession paradox and underdog bus-parking reference case.
+  - game_id: 66457042
+    date_taipei: 2026-06-18
+    kickoff_taipei: 2026-06-18T04:00:00+08:00
+    group: L
+    team_a: England
+    team_a_code: ENG
+    score_a: 4
+    team_b: Croatia
+    team_b_code: CRO
+    score_b: 2
+    status: complete
+    matchday_phase: MD1
+    detailed_stats_status: missing_official_stats
+    priority_reconciliation: high
+    notes:
+      - Card/referee impact case in calibration notes.
+  - game_id: 66457044
+    date_taipei: 2026-06-18
+    kickoff_taipei: 2026-06-18T07:00:00+08:00
+    group: L
+    team_a: Ghana
+    team_a_code: GHA
+    score_a: 1
+    team_b: Panama
+    team_b_code: PAN
+    score_b: 0
+    status: complete
+    matchday_phase: MD1
+    detailed_stats_status: missing_official_stats
+    priority_reconciliation: normal
+    notes: []
+  - game_id: 66457032
+    date_taipei: 2026-06-18
+    kickoff_taipei: 2026-06-18T10:00:00+08:00
+    group: K
+    team_a: Uzbekistan
+    team_a_code: UZB
+    score_a: 1
+    team_b: Colombia
+    team_b_code: COL
+    score_b: 3
+    status: complete
+    matchday_phase: MD1
+    detailed_stats_status: missing_official_stats
+    priority_reconciliation: normal
+    notes: []
+  - game_id: 66456910
+    date_taipei: 2026-06-19
+    kickoff_taipei: 2026-06-19T00:00:00+08:00
+    group: A
+    team_a: Czechia
+    team_a_code: CZE
+    score_a: 1
+    team_b: South Africa
+    team_b_code: RSA
+    score_b: 1
+    status: complete
+    matchday_phase: MD2
+    detailed_stats_status: missing_official_stats
+    priority_reconciliation: normal
+    notes: []
+  - game_id: 66456922
+    date_taipei: 2026-06-19
+    kickoff_taipei: 2026-06-19T03:00:00+08:00
+    group: B
+    team_a: Switzerland
+    team_a_code: SUI
+    score_a: 4
+    team_b: Bosnia and Herzegovina
+    team_b_code: BIH
+    score_b: 1
+    status: complete
+    matchday_phase: MD2
+    detailed_stats_status: missing_official_stats
+    priority_reconciliation: normal
+    notes: []
+  - game_id: 66456920
+    date_taipei: 2026-06-19
+    kickoff_taipei: 2026-06-19T06:00:00+08:00
+    group: B
+    team_a: Canada
+    team_a_code: CAN
+    score_a: 6
+    team_b: Qatar
+    team_b_code: QAT
+    score_b: 0
+    status: complete
+    matchday_phase: MD2
+    detailed_stats_status: missing_official_stats
+    priority_reconciliation: critical
+    notes:
+      - High-corner siege/blowout reference case.
+  - game_id: 66456908
+    date_taipei: 2026-06-19
+    kickoff_taipei: 2026-06-19T09:00:00+08:00
+    group: A
+    team_a: Mexico
+    team_a_code: MEX
+    score_a: 1
+    team_b: South Korea
+    team_b_code: KOR
+    score_b: 0
+    status: complete
+    matchday_phase: MD2
+    detailed_stats_status: partial_from_patterns
+    priority_reconciliation: critical
+    notes:
+      - Existing pattern references keeper-error decider and low corner count; needs official stat completion.
+  - game_id: 66456944
+    date_taipei: 2026-06-20
+    kickoff_taipei: 2026-06-20T03:00:00+08:00
+    group: D
+    team_a: United States
+    team_a_code: USA
+    score_a: 2
+    team_b: Australia
+    team_b_code: AUS
+    score_b: 0
+    status: complete
+    matchday_phase: MD2
+    detailed_stats_status: partial_from_patterns
+    priority_reconciliation: high
+    notes:
+      - Creator-vs-finisher/own-goal pressure case.
+  - game_id: 66456934
+    date_taipei: 2026-06-20
+    kickoff_taipei: 2026-06-20T06:00:00+08:00
+    group: C
+    team_a: Scotland
+    team_a_code: SCO
+    score_a: 0
+    team_b: Morocco
+    team_b_code: MAR
+    score_b: 1
+    status: complete
+    matchday_phase: MD2
+    detailed_stats_status: partial_from_patterns
+    priority_reconciliation: critical
+    notes:
+      - Existing pattern references Scotland 0 shots on target and Morocco xG edge; needs official stat completion.
+  - game_id: 66456932
+    date_taipei: 2026-06-20
+    kickoff_taipei: 2026-06-20T08:30:00+08:00
+    group: C
+    team_a: Brazil
+    team_a_code: BRA
+    score_a: 3
+    team_b: Haiti
+    team_b_code: HTI
+    score_b: 0
+    status: complete
+    matchday_phase: MD2
+    detailed_stats_status: missing_official_stats
+    priority_reconciliation: normal
+    notes: []
+  - game_id: 66456946
+    date_taipei: 2026-06-20
+    kickoff_taipei: 2026-06-20T11:00:00+08:00
+    group: D
+    team_a: Turkey
+    team_a_code: TUR
+    score_a: 0
+    team_b: Paraguay
+    team_b_code: PAR
+    score_b: 1
+    status: complete
+    matchday_phase: MD2
+    detailed_stats_status: missing_official_stats
+    priority_reconciliation: normal
+    notes: []
+  - game_id: 66456972
+    date_taipei: 2026-06-21
+    kickoff_taipei: 2026-06-21T01:00:00+08:00
+    group: F
+    team_a: Netherlands
+    team_a_code: NED
+    score_a: 5
+    team_b: Sweden
+    team_b_code: SWE
+    score_b: 1
+    status: complete
+    matchday_phase: MD2
+    detailed_stats_status: partial_from_patterns
+    priority_reconciliation: critical
+    notes:
+      - Goals/corners decoupling case; existing pattern says 6 total corners.
+  - game_id: 66457074
+    date_taipei: 2026-06-21
+    kickoff_taipei: 2026-06-21T04:00:00+08:00
+    group: E
+    team_a: Germany
+    team_a_code: GER
+    score_a: 2
+    team_b: Ivory Coast
+    team_b_code: CIV
+    score_b: 1
+    status: complete
+    matchday_phase: MD2
+    detailed_stats_status: missing_official_stats
+    priority_reconciliation: normal
+    notes: []
+  - game_id: 66457076
+    date_taipei: 2026-06-21
+    kickoff_taipei: 2026-06-21T08:00:00+08:00
+    group: E
+    team_a: Ecuador
+    team_a_code: ECU
+    score_a: 0
+    team_b: Curacao
+    team_b_code: CUW
+    score_b: 0
+    status: complete
+    matchday_phase: MD2
+    detailed_stats_status: missing_official_stats
+    priority_reconciliation: critical
+    notes:
+      - Draw-floor case.
+  - game_id: 66456974
+    date_taipei: 2026-06-21
+    kickoff_taipei: 2026-06-21T12:00:00+08:00
+    group: F
+    team_a: Tunisia
+    team_a_code: TUN
+    score_a: 0
+    team_b: Japan
+    team_b_code: JPN
+    score_b: 4
+    status: complete
+    matchday_phase: MD2
+    detailed_stats_status: missing_official_stats
+    priority_reconciliation: normal
+    notes: []
+  - game_id: 66456998
+    date_taipei: 2026-06-22
+    kickoff_taipei: 2026-06-22T00:00:00+08:00
+    group: H
+    team_a: Spain
+    team_a_code: ESP
+    score_a: 4
+    team_b: Saudi Arabia
+    team_b_code: KSA
+    score_b: 0
+    status: complete
+    matchday_phase: MD2
+    detailed_stats_status: missing_official_stats
+    priority_reconciliation: normal
+    notes: []
+  - game_id: 66456986
+    date_taipei: 2026-06-22
+    kickoff_taipei: 2026-06-22T03:00:00+08:00
+    group: G
+    team_a: Belgium
+    team_a_code: BEL
+    score_a: 0
+    team_b: Iran
+    team_b_code: IRI
+    score_b: 0
+    status: complete
+    matchday_phase: MD2
+    detailed_stats_status: full_calibration_entry_estimated_stats
+    priority_reconciliation: completed_but_official_stat_audit_recommended
+    notes:
+      - Fully logged in calibration v2.8 with estimated xG/SOT; official stat pack still should be reconciled if available.
+  - game_id: 66457000
+    date_taipei: 2026-06-22
+    kickoff_taipei: 2026-06-22T06:00:00+08:00
+    group: H
+    team_a: Uruguay
+    team_a_code: URU
+    score_a: 2
+    team_b: Cape Verde
+    team_b_code: CPV
+    score_b: 2
+    status: complete
+    matchday_phase: MD2
+    detailed_stats_status: missing_official_stats
+    priority_reconciliation: high
+    notes:
+      - Draw-floor and underdog resilience case.
+  - game_id: 66456988
+    date_taipei: 2026-06-22
+    kickoff_taipei: 2026-06-22T09:00:00+08:00
+    group: G
+    team_a: New Zealand
+    team_a_code: NZL
+    score_a: 1
+    team_b: Egypt
+    team_b_code: EGY
+    score_b: 3
+    status: complete
+    matchday_phase: MD2
+    detailed_stats_status: missing_official_stats
+    priority_reconciliation: high
+    notes:
+      - Needed for Group G MD3 bracket incentives.
+  - game_id: 66457022
+    date_taipei: 2026-06-23
+    kickoff_taipei: 2026-06-23T01:00:00+08:00
+    group: J
+    team_a: Argentina
+    team_a_code: ARG
+    score_a: 2
+    team_b: Austria
+    team_b_code: AUT
+    score_b: 0
+    status: complete
+    matchday_phase: MD2
+    detailed_stats_status: missing_official_stats
+    priority_reconciliation: critical
+    notes:
+      - Determines Group J bracket state before Jordan-Algeria.
+  - game_id: 66457010
+    date_taipei: 2026-06-23
+    kickoff_taipei: 2026-06-23T05:00:00+08:00
+    group: I
+    team_a: France
+    team_a_code: FRA
+    score_a: 3
+    team_b: Iraq
+    team_b_code: IRQ
+    score_b: 0
+    status: complete
+    matchday_phase: MD2
+    detailed_stats_status: missing_official_stats
+    priority_reconciliation: normal
+    notes: []
+  - game_id: 66457012
+    date_taipei: 2026-06-23
+    kickoff_taipei: 2026-06-23T08:00:00+08:00
+    group: I
+    team_a: Norway
+    team_a_code: NOR
+    score_a: 3
+    team_b: Senegal
+    team_b_code: SEN
+    score_b: 2
+    status: complete
+    matchday_phase: MD2
+    detailed_stats_status: missing_official_stats
+    priority_reconciliation: high
+    notes:
+      - Useful for fatigue and late-goal patterns.
+  - game_id: 66457024
+    date_taipei: 2026-06-23
+    kickoff_taipei: 2026-06-23T11:00:00+08:00
+    group: J
+    team_a: Jordan
+    team_a_code: JOR
+    score_a: 1
+    team_b: Algeria
+    team_b_code: DZA
+    score_b: 2
+    status: complete
+    matchday_phase: MD2
+    detailed_stats_status: partial_verified_event_data
+    priority_reconciliation: critical
+    post_match_reconciliation_link: football-intelligence/references/jordan-algeria-corner-calibration-20260623.md
+    notes:
+      - Jordan led through Nizar Al-Rashdan at 36'.
+      - Algeria equalized through Nadhir Benbouali from a Riyad Mahrez corner.
+      - Algeria winner by Amine Gouiri from a corner/set-piece scramble.
+      - Corner/set-piece siege rule created from this match.
