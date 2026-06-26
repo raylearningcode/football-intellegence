@@ -1,0 +1,334 @@
+# Football Intelligence Feature Registry v1
+# Created: 2026-06-26
+# Purpose: define model features, source requirements, leakage rules, and confidence impact.
+
+metadata:
+  registry_version: feature-registry-v1
+  model_target: football-intelligence-v3.1+
+  principle: "Every feature must have a source, timestamp, leakage rule, and confidence impact."
+
+feature_groups:
+  ratings:
+    priority: critical
+    features:
+      - name: home_team_rating
+        description: Pre-match team strength estimate for home/Team A.
+        sources: [ClubElo, FIFA ranking, custom Elo, market-implied strength]
+        known_before_kickoff: true
+        leakage_risk: low_if_timestamped
+        markets: [1x2, double_chance, handicap, goals]
+        missing_confidence_cap: 6.5
+      - name: away_team_rating
+        description: Pre-match team strength estimate for away/Team B.
+        sources: [ClubElo, FIFA ranking, custom Elo, market-implied strength]
+        known_before_kickoff: true
+        leakage_risk: low_if_timestamped
+        markets: [1x2, double_chance, handicap, goals]
+        missing_confidence_cap: 6.5
+      - name: rating_diff
+        description: home_team_rating minus away_team_rating.
+        sources: [derived]
+        known_before_kickoff: true
+        leakage_risk: low
+        markets: [1x2, handicap]
+        missing_confidence_cap: 6.5
+
+  market_odds:
+    priority: critical
+    features:
+      - name: implied_home_probability
+        description: Normalized implied probability from home win odds.
+        sources: [football-data.co.uk, bookmaker API, odds archive]
+        known_before_kickoff: true
+        leakage_risk: medium_if_closing_odds_used_after_prediction_time
+        markets: [1x2, value_betting]
+        missing_confidence_cap: 6.0
+      - name: implied_draw_probability
+        description: Normalized implied probability from draw odds.
+        sources: [football-data.co.uk, bookmaker API, odds archive]
+        known_before_kickoff: true
+        leakage_risk: medium_if_closing_odds_used_after_prediction_time
+        markets: [1x2, draw_floor]
+        missing_confidence_cap: 6.0
+      - name: implied_away_probability
+        description: Normalized implied probability from away win odds.
+        sources: [football-data.co.uk, bookmaker API, odds archive]
+        known_before_kickoff: true
+        leakage_risk: medium_if_closing_odds_used_after_prediction_time
+        markets: [1x2, value_betting]
+        missing_confidence_cap: 6.0
+      - name: total_goals_market_line
+        description: O/U market line and price.
+        sources: [bookmaker API, odds archive]
+        known_before_kickoff: true
+        leakage_risk: medium
+        markets: [goals, btts, correct_score]
+        missing_confidence_cap: 6.0
+      - name: asian_handicap_line
+        description: Handicap market and price.
+        sources: [bookmaker API, odds archive]
+        known_before_kickoff: true
+        leakage_risk: medium
+        markets: [handicap, side_protection]
+        missing_confidence_cap: 6.0
+
+  rolling_xg:
+    priority: critical
+    features:
+      - name: home_last5_xg_for
+        description: Rolling xG created by home team over previous five matches.
+        sources: [StatsBomb, Understat, FBref, provider_xg]
+        known_before_kickoff: true
+        leakage_risk: high_if_current_match_included
+        markets: [goals, 1x2, btts]
+        missing_confidence_cap: 6.5
+      - name: home_last5_xg_against
+        description: Rolling xG conceded by home team over previous five matches.
+        sources: [StatsBomb, Understat, FBref, provider_xg]
+        known_before_kickoff: true
+        leakage_risk: high_if_current_match_included
+        markets: [goals, 1x2, btts]
+        missing_confidence_cap: 6.5
+      - name: away_last5_xg_for
+        description: Rolling xG created by away team over previous five matches.
+        sources: [StatsBomb, Understat, FBref, provider_xg]
+        known_before_kickoff: true
+        leakage_risk: high_if_current_match_included
+        markets: [goals, 1x2, btts]
+        missing_confidence_cap: 6.5
+      - name: away_last5_xg_against
+        description: Rolling xG conceded by away team over previous five matches.
+        sources: [StatsBomb, Understat, FBref, provider_xg]
+        known_before_kickoff: true
+        leakage_risk: high_if_current_match_included
+        markets: [goals, 1x2, btts]
+        missing_confidence_cap: 6.5
+      - name: avg_xg_per_shot
+        description: Chance quality measure, better than raw shots.
+        sources: [StatsBomb, Understat, event_data]
+        known_before_kickoff: true
+        leakage_risk: high_if_current_match_included
+        markets: [goals, correct_score, btts]
+        missing_confidence_cap: 6.5
+
+  event_value:
+    priority: high
+    features:
+      - name: xT_for
+        description: Expected threat generated per match or rolling window.
+        sources: [StatsBomb, Wyscout, socceraction]
+        known_before_kickoff: true
+        leakage_risk: high_if_current_match_included
+        markets: [goals, tactical_matchup, player_props]
+        missing_confidence_cap: 7.0
+      - name: xT_against
+        description: Expected threat conceded per match or rolling window.
+        sources: [StatsBomb, Wyscout, socceraction]
+        known_before_kickoff: true
+        leakage_risk: high_if_current_match_included
+        markets: [goals, tactical_matchup]
+        missing_confidence_cap: 7.0
+      - name: VAEP_for
+        description: Value added by team actions.
+        sources: [StatsBomb, Wyscout, socceraction]
+        known_before_kickoff: true
+        leakage_risk: high_if_current_match_included
+        markets: [goals, side, player_props]
+        missing_confidence_cap: 7.0
+      - name: set_piece_xg_for
+        description: Expected goals from set pieces.
+        sources: [event_data, provider_xg]
+        known_before_kickoff: true
+        leakage_risk: high_if_current_match_included
+        markets: [goals, corners, player_props]
+        missing_confidence_cap: 6.5
+
+  tactical_mechanisms:
+    priority: critical
+    features:
+      - name: low_block_breaking_rating
+        description: Ability to break compact defensive blocks.
+        sources: [event_data, tactical_audit, analyst_rating]
+        known_before_kickoff: true
+        leakage_risk: medium_if_subjective
+        markets: [1x2, goals, draw, handicap]
+        missing_confidence_cap: 6.0
+      - name: transition_threat_rating
+        description: Threat from fast attacks, counters, direct runs.
+        sources: [event_data, team_profile, player_profile]
+        known_before_kickoff: true
+        leakage_risk: medium_if_subjective
+        markets: [btts, underdog_goal, cards]
+        missing_confidence_cap: 6.5
+      - name: tournament_control_rating
+        description: Ability to manage risk, tempo, and game state.
+        sources: [team_profile, coach_watchlist, match_history]
+        known_before_kickoff: true
+        leakage_risk: medium_if_subjective
+        markets: [protected_side, unders, corners]
+        missing_confidence_cap: 6.5
+      - name: wide_attack_share
+        description: Share of chance creation through wide/crossing routes.
+        sources: [event_data, crosses, touch_maps]
+        known_before_kickoff: true
+        leakage_risk: high_if_current_match_included
+        markets: [corners, goals, player_props]
+        missing_confidence_cap: 5.0
+      - name: central_attack_share
+        description: Share of progression through central combinations.
+        sources: [event_data, pass_maps, touch_maps]
+        known_before_kickoff: true
+        leakage_risk: high_if_current_match_included
+        markets: [corners, goals]
+        missing_confidence_cap: 5.0
+
+  corners:
+    priority: critical
+    features:
+      - name: corners_for_last5
+        description: Rolling team corners generated.
+        sources: [official_match_stats, FBref, FotMob, ESPN, SofaScore]
+        known_before_kickoff: true
+        leakage_risk: high_if_current_match_included
+        markets: [corners]
+        missing_confidence_cap: 5.0
+      - name: corners_against_last5
+        description: Rolling corners conceded.
+        sources: [official_match_stats, FBref, FotMob, ESPN, SofaScore]
+        known_before_kickoff: true
+        leakage_risk: high_if_current_match_included
+        markets: [corners]
+        missing_confidence_cap: 5.0
+      - name: blocked_crosses
+        description: Mechanism for corner creation.
+        sources: [event_data]
+        known_before_kickoff: true
+        leakage_risk: high_if_current_match_included
+        markets: [corners]
+        missing_confidence_cap: 5.0
+      - name: underdog_exit_quality
+        description: Ability of defending underdog to escape pressure instead of conceding repeated corners.
+        sources: [event_data, tactical_audit]
+        known_before_kickoff: true
+        leakage_risk: medium_if_subjective
+        markets: [corners, goals]
+        missing_confidence_cap: 5.0
+
+  discipline:
+    priority: high
+    features:
+      - name: referee_cards_per_match
+        description: Referee yellow/red card baseline.
+        sources: [official_referee_stats, worldreferee, match_reports]
+        known_before_kickoff: true
+        leakage_risk: low_if_referee_confirmed_pre_match
+        markets: [cards]
+        missing_confidence_cap: 5.0
+      - name: referee_reds_per_match
+        description: Referee red card tendency.
+        sources: [official_referee_stats, worldreferee, match_reports]
+        known_before_kickoff: true
+        leakage_risk: low_if_referee_confirmed_pre_match
+        markets: [cards, live_red_card]
+        missing_confidence_cap: 5.0
+      - name: team_fouls_last5
+        description: Rolling team fouls.
+        sources: [official_match_stats, FBref, FotMob, ESPN]
+        known_before_kickoff: true
+        leakage_risk: high_if_current_match_included
+        markets: [cards]
+        missing_confidence_cap: 5.5
+      - name: tactical_foul_exposure
+        description: Risk from defending transitions or isolated defenders.
+        sources: [event_data, tactical_audit]
+        known_before_kickoff: true
+        leakage_risk: medium_if_subjective
+        markets: [cards, player_props]
+        missing_confidence_cap: 5.5
+
+  availability:
+    priority: critical
+    features:
+      - name: key_absence_score
+        description: Penalty for missing key players weighted by role importance.
+        sources: [official_lineups, injury_reports, suspensions]
+        known_before_kickoff: true
+        leakage_risk: medium_if_lineup_confirmed_after_prediction_time
+        markets: [1x2, goals, player_props]
+        missing_confidence_cap: 6.5
+      - name: lineup_confirmed
+        description: Whether official lineup is available before prediction.
+        sources: [official_lineups]
+        known_before_kickoff: true
+        leakage_risk: low_if_timestamped
+        markets: [player_props, side, goals]
+        missing_confidence_cap: 5.0
+      - name: substitution_quality_score
+        description: Bench impact rating for second-half scenarios.
+        sources: [player_profiles, match_history]
+        known_before_kickoff: true
+        leakage_risk: medium_if_subjective
+        markets: [goals, live, correct_score]
+        missing_confidence_cap: 6.5
+
+  bracket_context:
+    priority: critical
+    features:
+      - name: draw_utility_home
+        description: Whether draw materially helps home/team A.
+        sources: [current_standings, tournament_rules]
+        known_before_kickoff: true
+        leakage_risk: low
+        markets: [1x2, goals, btts]
+        missing_confidence_cap: 5.0
+      - name: draw_utility_away
+        description: Whether draw materially helps away/team B.
+        sources: [current_standings, tournament_rules]
+        known_before_kickoff: true
+        leakage_risk: low
+        markets: [1x2, goals, btts]
+        missing_confidence_cap: 5.0
+      - name: goal_difference_chase
+        description: Whether goal difference creates incentive to keep scoring.
+        sources: [current_standings, tournament_rules]
+        known_before_kickoff: true
+        leakage_risk: low
+        markets: [goals, handicap, corners]
+        missing_confidence_cap: 5.5
+
+  environment:
+    priority: medium
+    features:
+      - name: weather_temperature
+        description: Match-time temperature forecast or actual.
+        sources: [weather_api, official_match_report]
+        known_before_kickoff: true
+        leakage_risk: low_if_forecast_timestamped
+        markets: [goals, tempo]
+        missing_confidence_cap: 7.0
+      - name: rain_wind_flag
+        description: Rain/wind risk affecting passing, crossing, and finishing.
+        sources: [weather_api, official_match_report]
+        known_before_kickoff: true
+        leakage_risk: low_if_forecast_timestamped
+        markets: [goals, corners]
+        missing_confidence_cap: 7.0
+      - name: altitude
+        description: Venue altitude.
+        sources: [venue_database]
+        known_before_kickoff: true
+        leakage_risk: low
+        markets: [fatigue, tempo]
+        missing_confidence_cap: 7.5
+
+validation_rules:
+  - rule: no_future_leakage
+    description: Rolling features must exclude the match being predicted.
+  - rule: timestamp_all_features
+    description: Every pre-match feature must have cutoff_time <= prediction_created_at.
+  - rule: missing_is_null_not_zero
+    description: Unknown stats must be null or missing_official_stats, never zero.
+  - rule: odds_timestamp_required
+    description: Odds must be tagged as opening, current, or closing; closing odds cannot be used for early predictions.
+  - rule: source_provenance_required
+    description: Every feature group must list source provider and confidence.
