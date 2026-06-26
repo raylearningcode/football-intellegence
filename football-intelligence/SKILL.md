@@ -1,525 +1,525 @@
 ---
 name: football-intelligence
 description: >
-  Elite football match prediction and analysis skill. ALWAYS use this skill when the user asks
-  about football/soccer match predictions, betting analysis, team form, tactical breakdowns,
-  player availability, match previews, or any request involving "predict", "analyze", "who will win",
-  "match preview", "betting tips", or names two football teams in a versus/vs context.
-  Also triggers on post-match review requests like "how did we do?", "update the skill",
-  "learn from last match", or "was the prediction right?". This skill self-improves after
-  every analysis cycle — log lessons learned and update calibration weights each time.
+  Elite football match prediction and analysis skill. Use this skill for football/soccer match
+  predictions, betting analysis, team form, tactical breakdowns, player availability, match previews,
+  live-match reads, post-match reviews, calibration updates, or any request involving "predict",
+  "analyze", "who will win", "match preview", "betting tips", or two football teams in a versus/vs
+  context. This skill is probabilistic, evidence-graded, source-aware, scenario-tested, and
+  self-improving through post-match reconciliation.
 ---
 
-# Football Intelligence System — Elite Prediction & Self-Improvement Engine
+# Football Intelligence System — v3.2 Operating Skill
 
-**Version: v2.3** | Backed up at: https://github.com/raylearningcode/football-intellegence
-(push updates there after significant changes — see that repo's README for why this exists)
-
-## PURPOSE
-
-Perform a complete multi-dimensional football intelligence investigation and produce the most accurate probability-based prediction possible. Self-audit after every match. Improve calibration weights and analytical precision iteratively.
-
-**Football is probabilistic, not deterministic. Never guarantee outcomes. Always communicate uncertainty.**
+**Version:** v3.2  
+**Repository:** https://github.com/raylearningcode/football-intellegence  
+**Authoritative workflow:** `football-intelligence/OPERATING_GUIDE.md`  
+**Current report template:** `football-intelligence/templates/match-analysis-template-v4.md`
 
 ---
 
-## PHASE 0 — SELF-CHECK BEFORE STARTING
+## 0. Purpose
 
-Before any analysis, read the calibration log:
+Produce probability-based football analysis with disciplined data handling, tactical reasoning, Monte Carlo validation, market-specific logic, and post-match learning.
 
+The model must answer:
+
+```text
+What game state benefits each team?
+What mechanism creates the market outcome?
+What evidence would prove the model wrong?
 ```
-/mnt/skills/user/football-intelligence/references/calibration-log.md
-```
 
-If the file doesn't exist yet, initialize it (see PHASE 7).
-
-Apply any active weight adjustments and lessons from prior predictions.
-
-**IMPORTANT — file location fix (v2.3):** this file lives INSIDE the skill folder, not in /tmp. /tmp is volatile scratch space and should never be used for anything meant to persist across matches or sessions. Always read/write the calibration log at the path above. This has broken the system's memory more than once — see calibration-log.md's "File-Location Incident" section for the full history before assuming any prior "it's updated" claim is accurate. When in doubt, check the GitHub backup (link above) as the source of truth.
+Football is probabilistic. Never guarantee an outcome.
 
 ---
 
-## PHASE 1 — DATA COLLECTION
+## 1. Non-negotiable rules
 
-Use `web_search` and `fetch_sports_data` to gather all of the following. Do NOT skip any category. If data is unavailable, note it explicitly and adjust confidence rating accordingly.
-
-### 1.1 Team Data
-- League position, points, GD
-- Home record (W/D/L, GF, GA)
-- Away record (W/D/L, GF, GA)
-- Last 5 matches (result, score, opponent strength)
-- Last 10 matches
-- Season xG, xGA
-
-### 1.2 Player Data
-- Expected lineup (search press conference / team news)
-- Injuries (position, severity, replacement quality)
-- Suspensions
-- Returning players
-- Top scorer / key creator fitness
-- Defensive anchor availability
-
-### 1.3 Match Context
-- Competition type & stage
-- **If group/bracket stage: pull current group standings (points, GD, GF/GA) for BOTH teams, and check both teams' remaining fixtures — this is a default step, not optional, not just for "motivation." See D9 for what to do with this.**
-- Title race / relegation battle implications
-- Derby / rivalry status
-- European spot implications
-- Cup progression stakes
-
-### 1.4 Environmental Data
-- Stadium name, capacity, pitch size
-- Weather forecast (temp, rain, wind)
-- Altitude (if relevant)
-- Home crowd impact
-
-### 1.5 External Factors
-- Rest days since last match
-- Travel distance (away team)
-- International break lingering effects
-- Manager changes (last 30 days)
-- Dressing room news / morale signals
+1. **Never invent missing stats.** If official xG, corners, cards, lineups, fouls, referee, or event data are not verified, mark them as missing.
+2. **Never treat possession as goal threat.** Convert possession into shots, box entries, set pieces, field tilt, or transition risk.
+3. **Never treat a famous player as the best prop automatically.** Separate creator, finisher, connector, chaos player, fouler, and fouled player.
+4. **Never attach an Over leg to a safe side leg without a goals-combo gate.** A protected side and a goals leg are different markets.
+5. **Never make Tier 1 cards without referee data.**
+6. **Never make Tier 1 corners without team-specific corner/cross/wide-mechanism data.**
+7. **Never make Tier 1 player props without lineup/minutes confidence.**
+8. **Never create a new calibration rule from pure variance.** Use the error taxonomy.
+9. **Always state uncertainty and confidence caps.**
+10. **Always keep source provenance for data updates.**
 
 ---
 
-## PHASE 2 — ANALYSIS FRAMEWORK (16 Dimensions)
+## 2. Required file reading order
 
-Score each dimension 0–100. Justify every score in 2–4 sentences.
+Before any serious prediction, read or apply these files in order:
 
-### D1. Current Form (Weight: 18%)
-- Last 5 + Last 10 results
-- xG vs actual goals (over/underperforming?)
-- Home vs Away form split
-- Winning/losing streaks
-- Clean sheets trend
-
-> **Score: Home [X] | Away [X]**
-
-### D2. Head-to-Head (Weight: 4%)
-- Last 5 and last 10 meetings
-- Same competition meetings
-- Same venue meetings
-- Psychological edge patterns
-- Tactical dominance patterns
-
-> **Score: [X] (favors Home / Away / Neutral)**
-
-### D3. Home/Away Advantage (Weight: 10%)
-- Home win rate this season
-- Away win rate this season
-- xG at home vs away
-- Goals conceded at home vs away
-
-> **Score: Venue Edge = [X]**
-
-### D4. Stadium Factor (Weight: included in D3)
-- Historical avg goals in this stadium
-- Pitch dimensions
-- Surface quality
-- Crowd intensity / decibel factor
-
-> **Stadium Note: [observation]**
-
-### D5. Player Availability (Weight: 14%)
-
-For every key absentee:
-```
-Player | Position | Impact (1-10) | Replacement Quality (1-10)
+```text
+1. football-intelligence/OPERATING_GUIDE.md
+2. football-intelligence/references/calibration-log.md
+3. latest calibration addenda / postmortems
+4. football-intelligence/references/h2h-patterns.md
+5. football-intelligence/references/league-profiles.md
+6. football-intelligence/references/match-research-protocol.md
+7. football-intelligence/references/analysis-workflow-v4.md
+8. football-intelligence/references/monte-carlo-simulation-v4.md
+9. football-intelligence/references/model-validation-and-calibration-v1.md
+10. football-intelligence/references/feature-registry-v1.yaml
+11. football-intelligence/templates/match-analysis-template-v4.md
 ```
 
-- Injury list completeness
-- Rotation risk (cup/league fatigue management)
-- Returning star players
+For World Cup 2026, also read:
 
-> **Score: Home [X] | Away [X]**
-
-### D6. Team Chemistry (Weight: 4%)
-- Starting XI consistency (# changes last 5 games)
-- Recent transfers bedding in
-- Manager-player tensions (press signals)
-- Contract dispute news
-
-> **Score: Home [X] | Away [X]**
-
-### D7. Tactical Matchup (Weight: 16%)
-- Formations (both teams)
-- Pressing intensity vs build-up style
-- Counterpressing vs deep block
-- Set-piece threat (attacking + defensive)
-- Transition speed
-- Width vs compactness
-- Which system tactically counters the opponent?
-
-> **Tactical Edge: [Team] | Magnitude: [Low/Medium/High]**
-
-### D8. Manager Quality (Weight: 3%)
-- Career win % at this level
-- Record vs this opponent
-- Tactical flexibility rating
-- Big-match performance history
-- In-game adjustment ability
-
-> **Score: Home [X] | Away [X]**
-
-### D9. Motivation & Bracket Context (Weight: 8%)
-
-**For ANY tournament with groups/brackets (World Cup, Euros, Champions League groups, etc.), this is NOT optional and is NOT just a vibe score. Pull the actual standings before writing anything else. Required sub-checks:**
-- Current points/GD for both teams entering the match.
-- What result does each team actually NEED — to top the group, guarantee qualification outright, or avoid a risky final-matchday decider?
-- Is a draw "good enough" for either or both sides given their group situation? (This changes expected aggression directly — state it.)
-- Who do they play in their LAST group match, and how strong is that opponent? A team already through, or already eliminated, often visibly changes effort/rotation in match 2.
-- Does GD matter as a tiebreaker here — especially under "best third-placed team" rules (e.g., 2026 World Cup's 8-best-thirds-advance rule)? If so, note whether either team has incentive to keep scoring or avoid conceding even after the match result is functionally decided.
-
-Beyond bracket state, also check the standard motivation factors:
-- Derby stakes?
-- Championship / Top-4 / Relegation battle (domestic leagues)?
-- Nothing-to-play-for risk (rotation, reduced intensity)?
-- Player-level incentives (contract year, records)?
-
-> **Motivation Score: Home [X] | Away [X]**
-> **Bracket State: [explicit 1-2 sentence summary of what each team needs and how it likely affects their approach]**
-
-### D10. Fatigue (Weight: 5%)
-
-Last 14 days:
-```
-Team | Matches | Avg Minutes | Travel KM | Rest Days
+```text
+football-intelligence/data/world-cup-2026/data-quality-audit-20260623.md
+football-intelligence/data/world-cup-2026/data-fill-log-20260626.md
+football-intelligence/data/world-cup-2026/matches-md1-md2-through-20260623.yaml
+football-intelligence/data/world-cup-2026/matches-md3-through-20260626-partial.yaml
+football-intelligence/references/world-cup-2026-match-ledger.md
+football-intelligence/profiles/world-cup-2026/team-index.md
+football-intelligence/profiles/world-cup-2026/team-profiles.md
+football-intelligence/profiles/world-cup-2026/coach-watchlist.md
+football-intelligence/profiles/world-cup-2026/player-watchlist.md
 ```
 
-- Fixture congestion index
-- Rotation depth quality
-- International break returnees (jet lag, fitness)
-
-> **Fatigue Risk: Home [Low/Med/High] | Away [Low/Med/High]**
-
-### D11. Referee Analysis (Weight: 2%)
-- Avg yellow cards per match
-- Avg red cards per match
-- Penalty award rate
-- Fouls per game
-- Home/away bias tendency
-- Style: strict / lenient / advantage-play
-
-> **Referee Impact: [observation + which team benefits]**
-
-### D12. Weather (Weight: 1%)
-- Temperature (cold favors defensive? heat favors technical?)
-- Rain (disrupts passing game?)
-- Wind (long ball / set-piece effect)
-- Heavy pitch (favors direct play)
-
-> **Weather Advantage: [Team / Neutral]**
-
-### D13. Advanced Metrics (Weight: 12%)
-- xG per match (season average)
-- xGA per match
-- PPDA (pressing metric — lower = higher press)
-- Possession % (home vs away)
-- Shot conversion rate
-- Big chances created vs conceded
-- Progressive passes per 90
-- Set-piece goals % of total goals
-
-> **xG Edge: [Team] | Metric Confidence: [Low/Med/High]**
-
-### D14. Betting Market (Weight: 2%)
-- Opening odds (1 / X / 2)
-- Current odds
-- Odds movement direction
-- Asian handicap line
-- Over/Under line and movement
-- Sharp money signals (odds shortening vs public)
-
-> **Market Lean: [observation]**
-
-### D15. News & Sentiment (Weight: 1%)
-- Press conference key quotes
-- Manager body language signals
-- Fan sentiment index
-- Club official announcements
-- Transfer window distraction risk
-
-> **Sentiment Signal: [Positive / Neutral / Negative per team]**
-
-### D16. Live Match (if applicable, replaces static weights)
-- Possession %, xG live, shots on target
-- Dangerous attacks
-- Cards, subs, injuries live
-- Momentum shift indicators
-- Dynamically updated probability
-
-**Game-state rules (learned from calibration — see calibration-log.md Rules #19, #20, #23, #24):**
-- Once any goal goes in (own goal, deflection, or otherwise), immediately re-run the goals-market read using GAME STATE, not pre-match tactical identity. Trailing team must commit forward; leading team usually has no incentive to sit back — UNLESS that manager/team has a specific stated "protect the result" pattern.
-- BUT: "team must chase" reliably predicts more SHOTS/CORNERS/CARDS — it does NOT automatically predict more GOALS. Defensive execution quality is a separate variable that can fully absorb game-state pressure. Check the leading team's defensive quality before assuming pressure converts to goals.
-- High possession share (e.g., 80%+) after taking a lead does not by itself mean continued goal threat — cross-check actual shot counts and final-third entries. Passive/circulating possession (control-and-protect) looks different from possession backed by a high shot rate (continued genuine threat). Distinguish the two explicitly.
-- A team generating zero (or very few) shots deep into a half is a stronger live signal of genuine struggle than pre-match form — update the read the moment live data diverges from pre-match expectation, in either direction.
-- Cross-reference bracket state (D9) live too: a team already "safe enough" on points may visibly shift to control-and-protect once ahead, while a team needing GD insurance keeps pushing even with a comfortable lead. Don't assume either default without checking.
-
-> **Live Momentum Score: [X/100]**
+If these cannot be read, cap confidence at **5/10**.
 
 ---
 
-## PHASE 3 — WEIGHTED COMPOSITE SCORING
+## 3. Standard analysis workflow
 
-Default weights (adjust with justification when context demands). **Current adjusted weights are
-v2.1, carried forward from calibration-log.md's Active Weight Table — start from these, not the
-raw defaults, then adjust further per-match if the specific fixture calls for it:**
+Every full match analysis follows this order:
 
-| Dimension | Default Weight | v2.1 Adjusted | Justification |
-|---|---|---|---|
-| Current Form | 18% | 16% | xG-form projections missed goal volume in several matches |
-| Tactical Matchup | 16% | 18% | Decisive in 4/8 matches (bus-parking, press intensity) |
-| Player Availability | 14% | 15% | Montes suspension pivotal; key injuries underweighted |
-| Advanced Metrics | 12% | 10% | Possession metrics misleading (Rule #15) |
-| Home Advantage | 10% | 10% | Unchanged |
-| Motivation & Bracket Context | 8% | 8% | Scope expanded (Rule #22), weight unchanged so far |
-| Fatigue | 5% | 5% | Unchanged |
-| Head-to-Head | 4% | 4% | Unchanged |
-| Team Chemistry | 4% | 4% | Unchanged |
-| Manager | 3% | 3% | Unchanged |
-| Referee | 2% | 3% | England-Croatia card impact underweighted |
-| Market Analysis | 2% | 2% | Unchanged |
-| Weather | 1% | 1% | Unchanged |
-| News & Sentiment | 1% | 1% | Unchanged |
-| **TOTAL** | **100%** | **100%** | |
+```text
+A. Startup calibration
+B. Data collection and source grading
+C. Bracket and motivation verification
+D. Coach gameplan diagnosis
+E. Tactical four-phase map
+F. Player movement audit
+G. 16-dimension score table
+H. Market-specific gates
+I. Scenario tree
+J. Monte Carlo v4 validation
+K. Betting tier classification
+L. Bet construction audit
+M. Final report
+N. Post-match reconciliation
+```
 
-Calculate:
-- Home Composite Score
-- Away Composite Score
-- Draw Indicator (closeness of scores + historical draw rate in this matchup type — see Rule #13
-  for World Cup-specific hardcoded draw floors that should never be undercut)
+Do not jump straight to picks.
 
 ---
 
-## PHASE 4 — PROBABILITY GENERATION
+## 4. Evidence grading
 
-### 4.1 Match Winner
-```
-Home Win:  XX%
-Draw:      XX%
-Away Win:  XX%
-```
+Every major claim should be tagged or mentally classified.
 
-### 4.2 Double Chance
-```
-1X (Home or Draw): XX%
-X2 (Draw or Away): XX%
-12 (Home or Away): XX%
-```
+| Grade | Meaning | Model use |
+|---|---|---|
+| A | Official/current/direct | Can move probability strongly |
+| B | Current trusted indirect | Can move probability moderately |
+| C | Historical but relevant | Small/moderate modifier |
+| D | Weak assumption or reputation | Mention only, do not anchor |
+| X | Unknown/unverified | State uncertainty and cap confidence |
 
-### 4.3 Goal Markets
-```
-Over 0.5:  XX%
-Over 1.5:  XX%
-Over 2.5:  XX%
-Over 3.5:  XX%
-Over 4.5:  XX%
-Under 2.5: XX%
-```
+Required data for full analysis:
 
-Base on: combined xG of both teams, historical avg goals in H2H, season avg goals, team attacking/defensive ratings, weather/fatigue modifiers.
-
-### 4.4 BTTS
-```
-BTTS Yes: XX%
-BTTS No:  XX%
-```
-
-### 4.5 First Half
-```
-First Half Winner: [Home / Draw / Away]
-First Half Goals: [Over/Under 0.5 / 1.5]
-First Half Probability: XX%
-```
-
-### 4.6 Correct Score (Top 5)
-```
-1. X-X  (XX%)
-2. X-X  (XX%)
-3. X-X  (XX%)
-4. X-X  (XX%)
-5. X-X  (XX%)
-```
-
-### 4.7 Player Props
-```
-Most Likely Goalscorer(s): [Player | Est. probability]
-Most Likely Assister:      [Player | Est. probability]
-Most Likely Yellow Card:   [Player | Reason]
-Most Likely Chance Creator:[Player | Reason]
+```text
+match identity, competition, kickoff, venue, weather
+standings/bracket and remaining fixtures
+last 5 and last 10 form
+xG/xGA, shots, shot quality, big chances if available
+lineups, injuries, suspensions, rotation risk
+tactical shape in and out of possession
+coach objective, fear, and tradeoff
+referee profile for cards
+odds/market lines for value calls
+corner/cross data for corners
+fouls/cards data for discipline
+player role/movement for props
 ```
 
 ---
 
-## PHASE 5 — MONTE CARLO SIMULATION
+## 5. Confidence caps
 
-Conceptually simulate 10,000 match instances using:
-- Team strength differentials
-- Home advantage factor
-- Form momentum coefficient
-- Fatigue modifier
-- Key player availability multiplier
-- Historical variance in this type of fixture
+Apply caps before recommending markets.
 
-Output:
-```
-Simulated Home Win:  XX%
-Simulated Draw:      XX%
-Simulated Away Win:  XX%
-Expected Goals Range: X.X – X.X total goals
-```
+| Missing / weak condition | Max confidence |
+|---|---:|
+| Startup/calibration files unread | 5/10 |
+| Tournament bracket state missing | 5/10 |
+| Referee missing for card market | 5/10 |
+| Team-specific corner/cross data missing | 5/10 |
+| Lineups missing for player props | 5/10 |
+| xG/shot-quality missing for goals market | 6.5/10 |
+| Odds missing for value-bet claim | 6/10 |
+| Simulation not run | 6/10 |
+| Simulation and tactical read diverge >8 pts | 6/10 until explained |
+| Correct score market | 4/10 |
+| Strong data + robust scenario tree + calibrated market | 8/10 max |
 
-Compare simulation output to Phase 4. If divergence > 8%, investigate and reconcile.
-
----
-
-## PHASE 6 — FINAL OUTPUT
-
-### SELF-AUDIT CHECKLIST (complete before finalizing)
-
-```
-✓ Recent form analyzed?
-✓ Home/away splits analyzed?
-✓ Injuries + suspensions covered?
-✓ Tactical matchup assessed?
-✓ Manager influence considered?
-✓ Referee profiled?
-✓ Weather checked?
-✓ Fatigue evaluated?
-✓ Motivation established?
-✓ Betting market checked?
-✓ Advanced metrics used?
-✓ Uncertainty explained?
-✓ Monte Carlo run?
-✓ Calibration log checked?
-```
-
-Any NO → continue analysis until resolved.
+Confidence represents data quality and calibration, not vibes.
 
 ---
 
-### FINAL REPORT FORMAT
+## 6. Bracket and motivation logic
 
+For tournaments, never write “must win” until the table proves it.
+
+Document:
+
+```text
+Current points/GD/GF/GA for both teams
+Remaining fixtures
+Whether a draw helps either team
+Whether GD matters
+Third-place qualification impact
+Which team has urgency
+How urgency changes behavior
 ```
-═══════════════════════════════════════════════════
-  FOOTBALL INTELLIGENCE REPORT
-  Match:       [Home] vs [Away]
-  Competition: [League/Cup]
-  Date:        [Date + KO Time]
-  Venue:       [Stadium]
-═══════════════════════════════════════════════════
 
-WIN PROBABILITIES
-  Home Win:  XX%
-  Draw:      XX%
-  Away Win:  XX%
+Motivation must become behavior:
 
-CONFIDENCE RATING: X/10
-  [Explain why — data completeness, variance, key uncertainties]
+```text
+higher press
+riskier fullbacks
+earlier substitutions
+deep block
+time management
+goal-difference chase
+rotation
+```
 
-MOST LIKELY SCORE: X-X
-SCORE PROBABILITY:  XX%
+If behavior does not change, the motivation claim should not move the model.
 
-TOP BETTING LEANS
-  1. [Market] — [Est. Probability] — [Reason]
-  2. [Market] — [Est. Probability] — [Reason]
-  3. [Market] — [Est. Probability] — [Reason]
+---
 
-KEY REASONS SUPPORTING PREDICTION
-  1.
-  2.
-  3.
-  4.
-  5.
+## 7. Coach gameplan read
 
-BIGGEST RISKS / PREDICTION KILLERS
-  1.
-  2.
-  3.
-  4.
-  5.
+Before probabilities, complete:
 
-MONTE CARLO VALIDATION
-  Simulated: Home XX% | Draw XX% | Away XX%
-  Model/Sim Agreement: [Strong / Moderate / Divergent]
+```text
+Team A coach objective:
+Team A likely plan:
+Team A biggest fear:
+Team A tradeoff:
 
-FINAL VERDICT
-  [3–5 sentence professional analyst conclusion]
-  [Always acknowledge uncertainty and probabilistic nature]
+Team B coach objective:
+Team B likely plan:
+Team B biggest fear:
+Team B tradeoff:
+```
 
-═══════════════════════════════════════════════════
-  ⚠ This is a probability model, not a guarantee.
-  Football produces upsets. Bet responsibly.
-═══════════════════════════════════════════════════
+A plan without a cost is incomplete.
+
+---
+
+## 8. Tactical four-phase map
+
+Analyze:
+
+1. Team A in possession.
+2. Team B in possession.
+3. Team A out of possession.
+4. Team B out of possession.
+
+For possession:
+
+```text
+build-up shape
+progression route
+key creator
+intended finisher
+set-piece route
+opponent answer
+failure mode
+```
+
+For defense:
+
+```text
+press height
+block shape
+weak zone
+set-piece defense
+transition defense
+rest defense
 ```
 
 ---
 
-## PHASE 7 — POST-MATCH SELF-IMPROVEMENT (CRITICAL)
+## 9. Player movement audit
 
-After the match result is known, run this improvement loop.
+For each team identify:
 
-### 7.1 Outcome Logging
-
-Append a new entry to the "Match Log" section of
-`/mnt/skills/user/football-intelligence/references/calibration-log.md`, following the format
-already established there (see existing entries #1-10 for the actual structure in use):
-
-```markdown
-### N. [Home] [Score] [Away] — FINAL (or IN PROGRESS) [Competition/Stage, Date]
-- Predicted: Home XX% / Draw XX% / Away XX%. Leans: [market 1], [market 2], [market 3].
-- Actual: [score]. Scorer(s)/key moments with minute markers.
-- Stats (via MCP or web search): possession, shots, corners, cards — cite the source.
-- Grade: [Market] ✓/✗ for each major lean, with a one-line reason for each miss.
-- New rule(s) born from this match, if any — write the rule directly into the "Active
-  Calibration Rules" section above (using the next available rule number) and reference it here.
+```text
+actual finisher
+creator
+connector
+chaos player
+wide crosser
+set-piece taker
+late runner
+target forward
+fouler
+fouled player
+substitution impact player
 ```
 
-This richer format (vs. a generic fill-in-the-blanks template) is what's actually been used in
-practice — match log entries should read like a genuine post-mortem, not a checklist.
-
-### 7.2 Weight Recalibration Rules
-
-After 5 logged matches, review patterns:
-
-- If form weight predictions consistently overshoot: reduce form weight by 1–2%, redistribute to Tactical Matchup or Player Availability
-- If xG-based predictions consistently miss: reduce Advanced Metrics weight, increase Head-to-Head
-- If home advantage is underestimated in specific leagues: add a league-specific home boost modifier
-- If weather/referee impact was significant: temporarily boost their weights for similar fixture types
-
-Document all changes in calibration log.
-
-### 7.3 Precision Improvement Targets
-
-Track across predictions:
-```
-Match Winner Accuracy:    X/N correct (XX%)
-Correct Score:            X/N correct (XX%)
-BTTS Accuracy:            X/N correct (XX%)
-O/U 2.5 Accuracy:         X/N correct (XX%)
-Top Scorer Named:         X/N correct (XX%)
-Confidence Calibration:   [was 7/10 confidence, won X% of those]
-```
-
-Goal: Improve each metric by ≥5% every 10 matches.
+Use current role, not reputation.
 
 ---
 
-## REFERENCES
+## 10. 16-dimension framework
 
-- `references/calibration-log.md` — Running log of predictions vs outcomes + weight adjustments
-- `references/league-profiles.md` — League-specific home advantage, avg goals, tactical norms
-- `references/h2h-patterns.md` — Notable recurring H2H tactical/psychological patterns
+Use the 16 dimensions as an input layer:
+
+```text
+Current form
+Head-to-head
+Venue/home advantage
+Player availability
+Team chemistry
+Tactical matchup
+Manager quality
+Motivation/bracket context
+Fatigue
+Referee
+Weather
+Advanced metrics
+Market analysis
+News/sentiment
+Live state if applicable
+```
+
+The composite score informs probabilities, but market-specific logic and scenario testing decide whether a bet exists.
 
 ---
 
-## SKILL EVOLUTION PHILOSOPHY
+## 11. Market-specific gates
 
-> "Each match is a data point. Each error is a lesson. Each correct prediction validates a weight. The system improves by challenging its own assumptions — never by simply repeating the same formula."
+### 11.1 Side / 1X2 / DNB
 
-This skill is **never finished**. It is a living analytical engine. After every match:
-1. Log the outcome
-2. Audit the prediction
-3. Update the weights
-4. Sharpen the heuristics
-5. Carry lessons forward
+Ask:
+
+```text
+Who controls risk?
+Who has midfield control?
+Who has defensive structure?
+Who can accept a draw?
+Who is less emotionally volatile?
+Does market price leave an edge?
+```
+
+Protected side belongs to the structure/control team, not automatically the home/emotional team.
+
+### 11.2 Goals
+
+Ask:
+
+```text
+What are the repeatable scoring routes?
+Can both teams generate shots?
+Does bracket state create aggression or control?
+What happens if 0-0 at HT?
+Is the line inflated by reputation or previous scoreline?
+```
+
+### 11.3 BTTS
+
+BTTS requires both teams to have a repeatable scoring route. Counter threat alone is not enough unless it produces real shots.
+
+### 11.4 Corners
+
+Ask:
+
+```text
+wide attack or central attack?
+blocked crosses?
+set-piece taker quality?
+underdog exit quality?
+what if underdog scores first?
+what if favorite scores first?
+team-corners or total-corners?
+```
+
+### 11.5 Cards
+
+Ask:
+
+```text
+referee strictness
+team foul/card rates
+transition exposure
+duel intensity
+frustration path
+specific player card risk
+```
+
+### 11.6 Player props
+
+Ask:
+
+```text
+lineup/minutes confidence
+actual role
+shot/key-pass/foul route
+opponent mismatch
+price edge
+```
+
+---
+
+## 12. Scenario tree
+
+Every full report must include these branches:
+
+```text
+favorite scores first early
+underdog scores first
+0-0 at halftime
+favorite leads by one after 70'
+draw after 75'
+red card between 55' and 75'
+```
+
+For each branch, state impact on:
+
+```text
+1X2
+goals
+BTTS
+corners
+cards
+player props
+```
+
+Tier 1 picks must survive at least two major branches.
+
+---
+
+## 13. Monte Carlo v4 validation
+
+Use `references/monte-carlo-simulation-v4.md`.
+
+Minimum output:
+
+```text
+Team A win probability
+Draw probability
+Team B win probability
+Over 1.5 / 2.5 / 3.5
+BTTS
+Top score cluster
+Corner range
+Card range
+Simulation/tactical agreement
+Main uncertainty
+```
+
+If the model and simulation differ by more than 8 percentage points, explain why before recommending anything.
+
+---
+
+## 14. Betting tiers
+
+| Tier | Meaning |
+|---|---|
+| Tier 1 | Core pick; strong A/B evidence, scenario survival, market edge |
+| Tier 2 | Lean; good logic but incomplete data or price sensitivity |
+| Tier 3 | Live-only; depends on early tempo, lineup, first goal, tactical reveal |
+| No bet | No stable edge or too many assumptions |
+
+No bet is expert output, not failure.
+
+---
+
+## 15. Bet construction audit
+
+Before any combo/parlay:
+
+```text
+Does each leg have independent support?
+Do legs rely on the same fragile assumption?
+Does the added leg create an unpriced failure mode?
+Would straight DNB/1X be better?
+Does mutual draw utility damage the over-goals leg?
+```
+
+Do not use a safe side leg as an excuse to force a volatile total.
+
+---
+
+## 16. Final report format
+
+Use the v4 template order:
+
+```text
+1. Match header
+2. Data quality summary
+3. Bracket state
+4. Coach gameplan read
+5. Tactical four-phase map
+6. Player movement audit
+7. 16-dimension score table
+8. Scenario tree
+9. Monte Carlo validation
+10. Market-specific analysis
+11. Betting tier table
+12. Bet construction audit
+13. Biggest prediction killers
+14. Final verdict
+15. Self-audit checklist
+```
+
+---
+
+## 17. Post-match self-improvement
+
+After the match:
+
+1. Use `templates/post-match-reconciliation-template.yaml`.
+2. Fill facts only from official/trusted sources.
+3. Grade every recommended market.
+4. Classify error using `calibration-error-taxonomy.md`.
+5. Update profiles only from repeatable mechanisms.
+6. Update calibration only if the rule would have helped pre-match.
+7. Update accuracy, Brier/log loss, and confidence buckets when enough samples exist.
+
+---
+
+## 18. Data update workflow
+
+When updating YAML/data files:
+
+```text
+official source first
+trusted stat-table source second
+news/narrative source only for mechanism/context unless exact stats are stated
+every field needs source provenance
+conflicts must be marked
+unknowns stay null
+data-fill log must explain what changed
+```
+
+---
+
+## 19. Self-audit checklist
+
+Before final answer:
+
+```text
+[ ] Calibration checked
+[ ] Data gaps stated
+[ ] Bracket verified
+[ ] Coach plan and tradeoff written
+[ ] Tactical four phases mapped
+[ ] Player roles separated
+[ ] Market gates applied
+[ ] Scenario tree completed
+[ ] Monte Carlo run or confidence cap stated
+[ ] Bet construction audited
+[ ] No fake stats used
+[ ] Confidence matches evidence quality
+```
