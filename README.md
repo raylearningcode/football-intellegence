@@ -8,15 +8,33 @@ Claude Skill. This repo is the durable backup of that skill — see "Why this re
 ```
 football-intelligence/
 ├── SKILL.md                          ← the actual skill: phases, framework, output format
-└── references/
-    ├── calibration-log.md            ← the system's memory: rules, weights, match history
-    ├── h2h-patterns.md               ← recurring tactical/psychological patterns across matches
-    └── league-profiles.md            ← league/tournament baseline stats (goals, draw rate, etc.)
+├── references/
+│   ├── calibration-log.md            ← the system's memory: rules, weights, match history
+│   ├── h2h-patterns.md               ← recurring tactical/psychological patterns across matches
+│   ├── league-profiles.md            ← league/tournament baseline stats (goals, draw rate, etc.)
+│   ├── event-data-source-integration-plan.md
+│   ├── event-data-schema-v1.md
+│   ├── monte-carlo-simulation-v4.md
+│   ├── model-validation-and-calibration-v1.md
+│   └── feature-registry-v1.yaml
+└── templates/
+    ├── match-analysis-template-v4.md
+    └── post-match-reconciliation-template.yaml
 ```
 
 **Start with `calibration-log.md`** if you want the fastest overview of what this system has
 actually learned — it has the full rule list, the running accuracy stats, and the match-by-match
 history that everything else is derived from.
+
+For model-development work, also read the v3.1 architecture files:
+
+1. `references/event-data-source-integration-plan.md` — which data sources to collect and how to avoid fake completeness.
+2. `references/event-data-schema-v1.md` — unified schema for events, shots, set pieces, tracking, and model-ready features.
+3. `references/monte-carlo-simulation-v4.md` — scenario-weighted, uncertainty-aware simulation design.
+4. `references/model-validation-and-calibration-v1.md` — Brier/log-loss/calibration/backtesting rules.
+5. `references/feature-registry-v1.yaml` — feature list, sources, leakage rules, and confidence caps.
+6. `templates/match-analysis-template-v4.md` — required structure for future match reports.
+7. `templates/post-match-reconciliation-template.yaml` — required structure for verified post-match logging.
 
 ## How it works
 
@@ -30,6 +48,8 @@ history that everything else is derived from.
 3. **Post-match:** predicted vs. actual is logged, errors are root-caused, and new calibration
    rules or weight adjustments are derived and added to the log — this is what makes the system
    "self-improving" rather than a static formula.
+4. **v3.1+ data discipline:** missing official stats stay missing until verified. The model should
+   improve by adding source-backed event data, schemas, validation, and simulation—not by guessing.
 
 ## Why this repo exists
 
@@ -47,16 +67,14 @@ where this left off, point it at this repo first**, or paste in the contents of
 
 ## Current state (update this line whenever you sync)
 
-As of the last sync: **v2.5**, 11 matches fully logged across FIFA World Cup 2026 (all FINAL, none
-pending), 28 active calibration rules. Match-winner accuracy 82% (9/11), Over/Under 2.5 at 73%
-(8/11), BTTS at 67% (6/9). Corners remain the weakest GRADED market (28%), but Rule #11's actual
-audit process is now 3/3 when properly applied (Mexico-Korea, Scotland-Morocco, Netherlands-
-Sweden) — the lesson is "pull real team-specific corner data first," not "corners are
-unpredictable." New Pattern P8 (goals/corners decoupling at the extremes — even a 5-1 blowout
-produced only 6 corners). Favorite-margin-variance now has 4 confirmed instances (Germany 7-1,
-Argentina 3-0, Canada 6-0, Netherlands 5-1) and is flagged as the top-priority item to formalize
-into a real numeric rule next. See `calibration-log.md`'s Reconciliation TODO for the full list
-of open items.
+As of the last sync: **v3.1 architecture update**, additive model-improvement docs have been added
+for event-data sources, event schema, Monte Carlo v4, validation/calibration, feature registry, and
+new analysis/reconciliation templates. The repo still should not claim all World Cup 2026 detailed
+stats are complete: most missing official xG, corners, cards, lineups, referee, and event fields
+must remain `null` or `missing_official_stats` until verified from official or trusted match-centre
+sources. The next real data task is to reconcile priority matches using the new template, beginning
+with rule-creating or model-failure cases such as Jordan-Algeria, Belgium-Iran, Portugal-DR Congo,
+Canada-Qatar, Netherlands-Sweden, Germany-Curacao, England-Ghana, and Switzerland-Canada.
 
 ## Using this elsewhere
 
@@ -65,3 +83,12 @@ already have these files loaded: paste the contents of `SKILL.md` as a system/pr
 and feed in `calibration-log.md` + `h2h-patterns.md` + `league-profiles.md` as reference context
 before asking for a match analysis. The skill is designed to read its own calibration log first
 (Phase 0) before doing anything else.
+
+For serious predictions after the v3.1 update, also load:
+
+- `event-data-source-integration-plan.md`
+- `event-data-schema-v1.md`
+- `monte-carlo-simulation-v4.md`
+- `model-validation-and-calibration-v1.md`
+- `feature-registry-v1.yaml`
+- `match-analysis-template-v4.md`
