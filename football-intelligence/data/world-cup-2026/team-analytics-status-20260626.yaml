@@ -1,0 +1,450 @@
+# World Cup 2026 Team Analytics Status Map
+# Created: 2026-06-26 Asia/Taipei
+# Purpose: one status row per World Cup team for analytics readiness.
+# Important: xG and advanced event stats are intentionally null unless verified from a trusted provider.
+
+metadata:
+  tournament: FIFA World Cup 2026
+  version: team-analytics-status-20260626-v1
+  created_at: 2026-06-26T00:00:00+08:00
+  policy: >-
+    This file tracks what each team still needs for serious analytics. Group record fields can be
+    filled from the current tournament table. Advanced fields such as xG, shots, SOT, PPDA,
+    crosses, field tilt, corners, cards, and player event stats must remain null until sourced
+    from official or trusted stat-table/event-data providers.
+  trusted_xg_source_status: not_verified_for_all_teams
+  latest_news_protocol: football-intelligence/references/latest-team-news-protocol-v1.md
+  data_requirements: football-intelligence/references/team-analytics-data-requirements-v1.md
+  confidence_rule: >-
+    If latest news is not checked before a match, overall analysis confidence is capped at 6/10.
+    If xG/shot quality is missing, goals confidence is capped at 6.5/10. If corners/crosses are
+    missing, corner confidence is capped at 5/10. If referee is missing, card confidence is capped at 5/10.
+
+common_advanced_fields_template:
+  xg_for: null
+  xg_against: null
+  shots_for: null
+  shots_against: null
+  shots_on_target_for: null
+  shots_on_target_against: null
+  possession: null
+  field_tilt: null
+  ppda: null
+  crosses: null
+  blocked_crosses: null
+  corners_for: null
+  corners_against: null
+  fouls_committed: null
+  fouls_won: null
+  yellow_cards: null
+  red_cards: null
+  set_piece_xg: null
+  transition_xg: null
+  avg_xg_per_shot: null
+  latest_news_checked: false
+  latest_news_status: required_before_analysis
+  advanced_stats_status: missing_verified_provider
+
+teams:
+  - team: Mexico
+    code: MEX
+    group: A
+    group_record: {played: 3, wins: 3, draws: 0, losses: 0, goals_for: 6, goals_against: 0, goal_difference: 6, points: 9}
+    qualification_status: advanced_group_winner
+    analytics_status: needs_official_stat_pack
+    latest_news_priority: knockout_preparation
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+  - team: South Africa
+    code: RSA
+    group: A
+    group_record: {played: 3, wins: 1, draws: 1, losses: 1, goals_for: 2, goals_against: 3, goal_difference: -1, points: 4}
+    qualification_status: advanced_runner_up
+    analytics_status: needs_official_stat_pack
+    latest_news_priority: knockout_preparation
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+  - team: South Korea
+    code: KOR
+    group: A
+    group_record: {played: 3, wins: 1, draws: 0, losses: 2, goals_for: 2, goals_against: 3, goal_difference: -1, points: 3}
+    qualification_status: third_place_pending_or_eliminated_context_dependent
+    analytics_status: needs_official_stat_pack
+    latest_news_priority: low_unless_third_place_relevant
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+  - team: Czechia
+    code: CZE
+    group: A
+    group_record: {played: 3, wins: 0, draws: 1, losses: 2, goals_for: 2, goals_against: 6, goal_difference: -4, points: 1}
+    qualification_status: eliminated
+    analytics_status: needs_official_stat_pack_for_backtest
+    latest_news_priority: low
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+
+  - team: Switzerland
+    code: SUI
+    group: B
+    group_record: {played: 3, wins: 2, draws: 1, losses: 0, goals_for: 7, goals_against: 3, goal_difference: 4, points: 7}
+    qualification_status: advanced_group_winner
+    analytics_status: needs_official_stat_pack
+    latest_news_priority: knockout_preparation
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+  - team: Canada
+    code: CAN
+    group: B
+    group_record: {played: 3, wins: 1, draws: 1, losses: 1, goals_for: 8, goals_against: 3, goal_difference: 5, points: 4}
+    qualification_status: advanced_runner_up
+    analytics_status: needs_official_stat_pack
+    latest_news_priority: knockout_preparation
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+  - team: Bosnia and Herzegovina
+    code: BIH
+    group: B
+    group_record: {played: 3, wins: 1, draws: 1, losses: 1, goals_for: 5, goals_against: 6, goal_difference: -1, points: 4}
+    qualification_status: third_place_pending_or_qualified_context_dependent
+    analytics_status: needs_official_stat_pack
+    latest_news_priority: medium_until_third_place_confirmed
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+  - team: Qatar
+    code: QAT
+    group: B
+    group_record: {played: 3, wins: 0, draws: 1, losses: 2, goals_for: 2, goals_against: 10, goal_difference: -8, points: 1}
+    qualification_status: eliminated
+    analytics_status: needs_official_stat_pack_for_backtest
+    latest_news_priority: low
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+
+  - team: Brazil
+    code: BRA
+    group: C
+    group_record: {played: 3, wins: 2, draws: 1, losses: 0, goals_for: 7, goals_against: 1, goal_difference: 6, points: 7}
+    qualification_status: advanced_group_winner
+    analytics_status: needs_official_stat_pack
+    latest_news_priority: knockout_preparation
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+  - team: Morocco
+    code: MAR
+    group: C
+    group_record: {played: 3, wins: 2, draws: 1, losses: 0, goals_for: 6, goals_against: 3, goal_difference: 3, points: 7}
+    qualification_status: advanced_runner_up
+    analytics_status: needs_official_stat_pack
+    latest_news_priority: knockout_preparation
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+  - team: Scotland
+    code: SCO
+    group: C
+    group_record: {played: 3, wins: 1, draws: 0, losses: 2, goals_for: 1, goals_against: 4, goal_difference: -3, points: 3}
+    qualification_status: third_place_pending_or_eliminated_context_dependent
+    analytics_status: needs_official_stat_pack
+    latest_news_priority: low_unless_third_place_relevant
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+  - team: Haiti
+    code: HTI
+    group: C
+    group_record: {played: 3, wins: 0, draws: 0, losses: 3, goals_for: 2, goals_against: 8, goal_difference: -6, points: 0}
+    qualification_status: eliminated
+    analytics_status: needs_official_stat_pack_for_backtest
+    latest_news_priority: low
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+
+  - team: United States
+    code: USA
+    group: D
+    group_record: {played: 2, wins: 2, draws: 0, losses: 0, goals_for: 6, goals_against: 1, goal_difference: 5, points: 6}
+    qualification_status: advanced_group_winner_before_md3
+    analytics_status: needs_md3_final_update_and_official_stat_pack
+    latest_news_priority: high_for_knockout_and_rotation
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+  - team: Australia
+    code: AUS
+    group: D
+    group_record: {played: 2, wins: 1, draws: 0, losses: 1, goals_for: 2, goals_against: 2, goal_difference: 0, points: 3}
+    qualification_status: md3_pending
+    analytics_status: needs_md3_final_update_and_official_stat_pack
+    latest_news_priority: high_for_md3_and_possible_knockout
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+  - team: Paraguay
+    code: PAR
+    group: D
+    group_record: {played: 2, wins: 1, draws: 0, losses: 1, goals_for: 2, goals_against: 4, goal_difference: -2, points: 3}
+    qualification_status: md3_pending
+    analytics_status: needs_md3_final_update_and_official_stat_pack
+    latest_news_priority: high_for_md3_and_possible_knockout
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+  - team: Turkey
+    code: TUR
+    group: D
+    group_record: {played: 2, wins: 0, draws: 0, losses: 2, goals_for: 0, goals_against: 3, goal_difference: -3, points: 0}
+    qualification_status: eliminated_before_md3
+    analytics_status: needs_md3_final_update_and_official_stat_pack
+    latest_news_priority: medium_for_md3_backtest
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+
+  - team: Germany
+    code: GER
+    group: E
+    group_record: {played: 3, wins: 2, draws: 0, losses: 1, goals_for: 10, goals_against: 4, goal_difference: 6, points: 6}
+    qualification_status: advanced_group_winner
+    analytics_status: needs_official_stat_pack
+    latest_news_priority: knockout_preparation
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+  - team: Ivory Coast
+    code: CIV
+    group: E
+    group_record: {played: 3, wins: 2, draws: 0, losses: 1, goals_for: 4, goals_against: 2, goal_difference: 2, points: 6}
+    qualification_status: advanced_runner_up
+    analytics_status: needs_official_stat_pack
+    latest_news_priority: knockout_preparation
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+  - team: Ecuador
+    code: ECU
+    group: E
+    group_record: {played: 3, wins: 1, draws: 1, losses: 1, goals_for: 2, goals_against: 2, goal_difference: 0, points: 4}
+    qualification_status: third_place_strong
+    analytics_status: needs_official_stat_pack
+    latest_news_priority: medium_until_third_place_confirmed
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+  - team: Curacao
+    code: CUW
+    group: E
+    group_record: {played: 3, wins: 0, draws: 1, losses: 2, goals_for: 1, goals_against: 9, goal_difference: -8, points: 1}
+    qualification_status: eliminated
+    analytics_status: needs_official_stat_pack_for_backtest
+    latest_news_priority: low
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+
+  - team: Netherlands
+    code: NED
+    group: F
+    group_record: {played: 3, wins: 2, draws: 1, losses: 0, goals_for: 10, goals_against: 4, goal_difference: 6, points: 7}
+    qualification_status: advanced_group_winner
+    analytics_status: needs_official_stat_pack
+    latest_news_priority: knockout_preparation
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+  - team: Japan
+    code: JPN
+    group: F
+    group_record: {played: 3, wins: 1, draws: 2, losses: 0, goals_for: 7, goals_against: 3, goal_difference: 4, points: 5}
+    qualification_status: advanced_runner_up
+    analytics_status: needs_official_stat_pack
+    latest_news_priority: knockout_preparation
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+  - team: Sweden
+    code: SWE
+    group: F
+    group_record: {played: 3, wins: 1, draws: 1, losses: 1, goals_for: 7, goals_against: 7, goal_difference: 0, points: 4}
+    qualification_status: third_place_strong
+    analytics_status: needs_official_stat_pack
+    latest_news_priority: medium_until_third_place_confirmed
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+  - team: Tunisia
+    code: TUN
+    group: F
+    group_record: {played: 3, wins: 0, draws: 0, losses: 3, goals_for: 2, goals_against: 12, goal_difference: -10, points: 0}
+    qualification_status: eliminated
+    analytics_status: needs_official_stat_pack_for_backtest
+    latest_news_priority: low
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+
+  - team: Egypt
+    code: EGY
+    group: G
+    group_record: {played: 2, wins: 1, draws: 1, losses: 0, goals_for: 4, goals_against: 2, goal_difference: 2, points: 4}
+    qualification_status: md3_pending
+    analytics_status: needs_md3_update_and_official_stat_pack
+    latest_news_priority: high_for_md3
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+  - team: Iran
+    code: IRI
+    group: G
+    group_record: {played: 2, wins: 0, draws: 2, losses: 0, goals_for: 2, goals_against: 2, goal_difference: 0, points: 2}
+    qualification_status: md3_pending
+    analytics_status: needs_md3_update_and_official_stat_pack
+    latest_news_priority: high_for_md3
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+  - team: Belgium
+    code: BEL
+    group: G
+    group_record: {played: 2, wins: 0, draws: 2, losses: 0, goals_for: 1, goals_against: 1, goal_difference: 0, points: 2}
+    qualification_status: md3_pending
+    analytics_status: needs_md3_update_and_official_stat_pack
+    latest_news_priority: high_for_md3
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+  - team: New Zealand
+    code: NZL
+    group: G
+    group_record: {played: 2, wins: 0, draws: 1, losses: 1, goals_for: 3, goals_against: 5, goal_difference: -2, points: 1}
+    qualification_status: md3_pending
+    analytics_status: needs_md3_update_and_official_stat_pack
+    latest_news_priority: high_for_md3
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+
+  - team: Spain
+    code: ESP
+    group: H
+    group_record: {played: 2, wins: 1, draws: 1, losses: 0, goals_for: 4, goals_against: 0, goal_difference: 4, points: 4}
+    qualification_status: md3_pending
+    analytics_status: needs_md3_update_and_official_stat_pack
+    latest_news_priority: high_for_md3
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+  - team: Uruguay
+    code: URU
+    group: H
+    group_record: {played: 2, wins: 0, draws: 2, losses: 0, goals_for: 3, goals_against: 3, goal_difference: 0, points: 2}
+    qualification_status: md3_pending
+    analytics_status: needs_md3_update_and_official_stat_pack
+    latest_news_priority: high_for_md3
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+  - team: Cape Verde
+    code: CPV
+    group: H
+    group_record: {played: 2, wins: 0, draws: 2, losses: 0, goals_for: 2, goals_against: 2, goal_difference: 0, points: 2}
+    qualification_status: md3_pending
+    analytics_status: needs_md3_update_and_official_stat_pack
+    latest_news_priority: high_for_md3
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+  - team: Saudi Arabia
+    code: KSA
+    group: H
+    group_record: {played: 2, wins: 0, draws: 1, losses: 1, goals_for: 1, goals_against: 5, goal_difference: -4, points: 1}
+    qualification_status: md3_pending
+    analytics_status: needs_md3_update_and_official_stat_pack
+    latest_news_priority: high_for_md3
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+
+  - team: France
+    code: FRA
+    group: I
+    group_record: {played: 2, wins: 2, draws: 0, losses: 0, goals_for: 6, goals_against: 1, goal_difference: 5, points: 6}
+    qualification_status: md3_pending_already_strong
+    analytics_status: needs_md3_update_and_official_stat_pack
+    latest_news_priority: high_for_md3_rotation_and_knockout
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+  - team: Norway
+    code: NOR
+    group: I
+    group_record: {played: 2, wins: 2, draws: 0, losses: 0, goals_for: 7, goals_against: 3, goal_difference: 4, points: 6}
+    qualification_status: md3_pending_already_strong
+    analytics_status: needs_md3_update_and_official_stat_pack
+    latest_news_priority: high_for_md3_and_knockout
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+  - team: Senegal
+    code: SEN
+    group: I
+    group_record: {played: 2, wins: 0, draws: 0, losses: 2, goals_for: 3, goals_against: 6, goal_difference: -3, points: 0}
+    qualification_status: md3_pending_but_low
+    analytics_status: needs_md3_update_and_official_stat_pack
+    latest_news_priority: high_for_md3
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+  - team: Iraq
+    code: IRQ
+    group: I
+    group_record: {played: 2, wins: 0, draws: 0, losses: 2, goals_for: 1, goals_against: 7, goal_difference: -6, points: 0}
+    qualification_status: md3_pending_but_low
+    analytics_status: needs_md3_update_and_official_stat_pack
+    latest_news_priority: high_for_md3_backtest
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+
+  - team: Argentina
+    code: ARG
+    group: J
+    group_record: {played: 2, wins: 2, draws: 0, losses: 0, goals_for: 5, goals_against: 0, goal_difference: 5, points: 6}
+    qualification_status: md3_pending_already_strong
+    analytics_status: needs_md3_update_and_official_stat_pack
+    latest_news_priority: high_for_md3_rotation_and_knockout
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+  - team: Austria
+    code: AUT
+    group: J
+    group_record: {played: 2, wins: 1, draws: 0, losses: 1, goals_for: 3, goals_against: 3, goal_difference: 0, points: 3}
+    qualification_status: md3_pending
+    analytics_status: needs_md3_update_and_official_stat_pack
+    latest_news_priority: high_for_md3
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+  - team: Algeria
+    code: DZA
+    group: J
+    group_record: {played: 2, wins: 1, draws: 0, losses: 1, goals_for: 2, goals_against: 4, goal_difference: -2, points: 3}
+    qualification_status: md3_pending
+    analytics_status: needs_md3_update_and_official_stat_pack
+    latest_news_priority: high_for_md3
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+  - team: Jordan
+    code: JOR
+    group: J
+    group_record: {played: 2, wins: 0, draws: 0, losses: 2, goals_for: 2, goals_against: 5, goal_difference: -3, points: 0}
+    qualification_status: md3_pending_but_low
+    analytics_status: needs_md3_update_and_official_stat_pack
+    latest_news_priority: high_for_md3_backtest
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+
+  - team: Colombia
+    code: COL
+    group: K
+    group_record: {played: 2, wins: 2, draws: 0, losses: 0, goals_for: 4, goals_against: 1, goal_difference: 3, points: 6}
+    qualification_status: md3_pending_already_strong
+    analytics_status: needs_md3_update_and_official_stat_pack
+    latest_news_priority: high_for_md3_and_knockout
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+  - team: Portugal
+    code: POR
+    group: K
+    group_record: {played: 2, wins: 1, draws: 1, losses: 0, goals_for: 6, goals_against: 1, goal_difference: 5, points: 4}
+    qualification_status: md3_pending_strong
+    analytics_status: needs_md3_update_and_official_stat_pack
+    latest_news_priority: high_for_md3_and_knockout
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+  - team: DR Congo
+    code: COD
+    group: K
+    group_record: {played: 2, wins: 0, draws: 1, losses: 1, goals_for: 1, goals_against: 2, goal_difference: -1, points: 1}
+    qualification_status: md3_pending
+    analytics_status: needs_md3_update_and_official_stat_pack
+    latest_news_priority: high_for_md3
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+  - team: Uzbekistan
+    code: UZB
+    group: K
+    group_record: {played: 2, wins: 0, draws: 0, losses: 2, goals_for: 1, goals_against: 8, goal_difference: -7, points: 0}
+    qualification_status: md3_pending_but_low
+    analytics_status: needs_md3_update_and_official_stat_pack
+    latest_news_priority: high_for_md3_backtest
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+
+  - team: England
+    code: ENG
+    group: L
+    group_record: {played: 2, wins: 1, draws: 1, losses: 0, goals_for: 4, goals_against: 2, goal_difference: 2, points: 4}
+    qualification_status: md3_pending_strong
+    analytics_status: needs_md3_update_and_official_stat_pack
+    latest_news_priority: high_for_md3_and_knockout
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+  - team: Ghana
+    code: GHA
+    group: L
+    group_record: {played: 2, wins: 1, draws: 1, losses: 0, goals_for: 1, goals_against: 0, goal_difference: 1, points: 4}
+    qualification_status: md3_pending_strong
+    analytics_status: needs_md3_update_and_official_stat_pack
+    latest_news_priority: high_for_md3_and_knockout
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+  - team: Croatia
+    code: CRO
+    group: L
+    group_record: {played: 2, wins: 1, draws: 0, losses: 1, goals_for: 3, goals_against: 4, goal_difference: -1, points: 3}
+    qualification_status: md3_pending
+    analytics_status: needs_md3_update_and_official_stat_pack
+    latest_news_priority: high_for_md3
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+  - team: Panama
+    code: PAN
+    group: L
+    group_record: {played: 2, wins: 0, draws: 0, losses: 2, goals_for: 0, goals_against: 2, goal_difference: -2, points: 0}
+    qualification_status: md3_pending_but_low
+    analytics_status: needs_md3_update_and_official_stat_pack
+    latest_news_priority: high_for_md3_backtest
+    advanced: {xg_for: null, xg_against: null, shots_for: null, shots_against: null, shots_on_target_for: null, shots_on_target_against: null, possession: null, field_tilt: null, ppda: null, crosses: null, blocked_crosses: null, corners_for: null, corners_against: null, fouls_committed: null, fouls_won: null, yellow_cards: null, red_cards: null, set_piece_xg: null, transition_xg: null, avg_xg_per_shot: null}
+
+next_update_tasks:
+  - collect_official_match_stats_for_completed_groups_A_to_F
+  - collect_md3_final_scores_for_groups_D_G_H_I_J_K_L_when_final
+  - verify_any_available_xg_provider_before_filling_xg_fields
+  - create_latest_team_news_cache_for_each_upcoming_match
+  - update_team_profiles_after official stat reconciliation
