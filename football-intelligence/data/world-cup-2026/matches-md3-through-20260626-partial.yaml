@@ -1,0 +1,547 @@
+# World Cup 2026 MD3 partial verified dataset
+# Created: 2026-06-26 Asia/Taipei
+# Scope: Group-stage MD3 data newly found after the repo's existing MD1-MD2 dataset.
+# Important: This file only fills data supported by accessible sources in this update pass.
+# Unknown detailed stats remain null / missing_official_stats.
+
+metadata:
+  tournament: FIFA World Cup 2026
+  data_version: wc2026-md3-through-20260626-partial-v1
+  updated_at: 2026-06-26T00:00:00+08:00
+  coverage_note: >-
+    Adds verified or partially verified MD3 results and event notes for Groups A-F where accessible
+    sources were found. It does not claim full official stat-pack completion.
+  detailed_stats_policy: >-
+    Do not infer xG, corners, cards, fouls, lineups, or possession unless explicitly available from
+    official or trusted match-centre/stat-table sources. News articles may be used for score, scorer,
+    lineup, and tactical-mechanism notes only when clearly stated.
+  source_confidence_scale:
+    official: official FIFA or equivalent match-centre source
+    high: Reuters / Guardian / major live match report with clear score or events
+    medium: reputable secondary report with clear event detail
+    partial: pre-match lineup/source-only or incomplete narrative
+  missing_fields_default:
+    referee: null
+    weather: null
+    halftime_score: null
+    xg: null
+    shots: null
+    shots_on_target: null
+    possession: null
+    corners: null
+    cards: null
+    fouls: null
+    offsides: null
+    lineups: null
+    substitutions: null
+
+matches:
+  - match_id: wc2026-md3-group-a-cze-mex
+    date_taipei: 2026-06-25
+    group: A
+    team_a: Czechia
+    team_a_code: CZE
+    score_a: 0
+    team_b: Mexico
+    team_b_code: MEX
+    score_b: 3
+    status: complete
+    matchday_phase: MD3
+    venue: Estadio Ciudad de Mexico
+    detailed_stats_status: partial_event_data
+    events:
+      goals:
+        - minute: 54
+          team: Mexico
+          scorer: Mateo Chavez
+          mechanism: open_play
+          source_confidence: high
+        - minute: 61
+          team: Mexico
+          scorer: Julian Quinones
+          mechanism: scramble_finish
+          source_confidence: high
+        - minute: stoppage_time
+          team: Mexico
+          scorer: Alvaro Fidalgo
+          mechanism: long_ball_transition_started_by_goalkeeper
+          source_confidence: high
+    context_notes:
+      - Mexico finished Group A with three wins and three clean sheets.
+      - Czechia were eliminated after finishing last in the group.
+    sources:
+      - provider: Reuters
+        url_or_reference: https://www.reuters.com/sports/soccer/mexico-stay-perfect-bounce-czechs-out-world-cup-with-3-0-win-2026-06-25/
+        confidence: high
+      - provider: Guardian live report
+        url_or_reference: https://www.theguardian.com/football/live/2026/jun/24/czechia-v-mexico-world-cup-2026-live
+        confidence: high
+    open_data_gaps:
+      - official xG, shots, SOT, possession, corners, cards, fouls, lineups, substitutions
+
+  - match_id: wc2026-md3-group-a-rsa-kor
+    date_taipei: 2026-06-25
+    group: A
+    team_a: South Africa
+    team_a_code: RSA
+    score_a: 1
+    team_b: South Korea
+    team_b_code: KOR
+    score_b: 0
+    status: complete
+    matchday_phase: MD3
+    detailed_stats_status: score_only_from_related_report
+    context_notes:
+      - South Africa defeated South Korea 1-0 and finished second in Group A.
+      - South Korea lost 1-0 and did not finish above South Africa.
+    sources:
+      - provider: Guardian live report for Czechia-Mexico mentioning other Group A result
+        url_or_reference: https://www.theguardian.com/football/live/2026/jun/24/czechia-v-mexico-world-cup-2026-live
+        confidence: high_for_score_context
+      - provider: Reuters community report mentioning Korean watch party and 1-0 defeat
+        url_or_reference: https://www.reuters.com/sports/soccer/keeping-our-roots-eternal-korean-americans-celebrate-home-world-cup-2026-06-25/
+        confidence: high_for_score_context
+    open_data_gaps:
+      - scorers, goal minute, venue, official stats, lineups, cards, referee
+
+  - match_id: wc2026-md3-group-b-sui-can
+    date_taipei: 2026-06-25
+    group: B
+    team_a: Switzerland
+    team_a_code: SUI
+    score_a: 2
+    team_b: Canada
+    team_b_code: CAN
+    score_b: 1
+    status: complete
+    matchday_phase: MD3
+    venue: BC Place Vancouver
+    detailed_stats_status: partial_event_data
+    events:
+      goals:
+        - minute: 46
+          team: Switzerland
+          scorer: Ruben Vargas
+          mechanism: early_second_half_goal
+          source_confidence: high
+        - minute: 57
+          team: Switzerland
+          scorer: Johan Manzambi
+          mechanism: open_play_finish
+          source_confidence: high
+        - minute: 76
+          team: Canada
+          scorer: Promise David
+          mechanism: substitute_goal
+          source_confidence: high
+    context_notes:
+      - Switzerland won Group B with seven points.
+      - Canada also advanced, finishing three points behind Switzerland.
+      - Reuters described the first half as low-event, with only three attempts on goal and two yellow cards.
+      - Gregor Kobel made crucial late saves.
+    sources:
+      - provider: Reuters
+        url_or_reference: https://www.reuters.com/sports/soccer/switzerland-secure-world-cup-group-victory-with-2-1-win-over-canada-2026-06-24/
+        confidence: high
+    open_data_gaps:
+      - official xG, total shots, SOT split, possession, corners, card identities, lineups, substitutions
+
+  - match_id: wc2026-md3-group-b-bih-qat
+    date_taipei: 2026-06-25
+    group: B
+    team_a: Bosnia and Herzegovina
+    team_a_code: BIH
+    score_a: 3
+    team_b: Qatar
+    team_b_code: QAT
+    score_b: 1
+    status: complete
+    matchday_phase: MD3
+    detailed_stats_status: score_only_from_related_report
+    context_notes:
+      - Bosnia and Herzegovina defeated Qatar 3-1.
+      - Qatar were eliminated.
+    sources:
+      - provider: Reuters Switzerland-Canada report, other Group B match note
+        url_or_reference: https://www.reuters.com/sports/soccer/switzerland-secure-world-cup-group-victory-with-2-1-win-over-canada-2026-06-24/
+        confidence: high_for_score_context
+    open_data_gaps:
+      - scorers, goal minutes, venue, official stats, lineups, cards, referee
+
+  - match_id: wc2026-md3-group-c-sco-bra
+    date_taipei: 2026-06-25
+    group: C
+    team_a: Scotland
+    team_a_code: SCO
+    score_a: 0
+    team_b: Brazil
+    team_b_code: BRA
+    score_b: 3
+    status: complete
+    matchday_phase: MD3
+    venue: Miami Stadium
+    detailed_stats_status: partial_event_data_secondary_sources
+    events:
+      goals:
+        - minute: null
+          team: Brazil
+          scorer: Vinicius Junior
+          mechanism: open_play
+          source_confidence: medium
+        - minute: null
+          team: Brazil
+          scorer: Vinicius Junior
+          mechanism: open_play
+          source_confidence: medium
+        - minute: null
+          team: Brazil
+          scorer: Matheus Cunha
+          mechanism: open_play
+          source_confidence: medium
+    context_notes:
+      - Brazil beat Scotland 3-0 and advanced to the knockout stage.
+      - Vinicius Junior reportedly scored twice.
+      - Neymar reportedly made his 2026 World Cup debut as a substitute.
+      - Scotland finished group play on three points and awaited third-place qualification outcomes.
+    sources:
+      - provider: NY Post secondary report
+        url_or_reference: https://nypost.com/2026/06/25/sports/scottish-actress-karen-gillans-world-cup-adventure-ends-up-on-the-wrong-bus/
+        confidence: medium
+      - provider: Times of India secondary report
+        url_or_reference: https://timesofindia.indiatimes.com/sports/football/fifa-world-cup/vincius-jr-breaks-24-year-old-record-with-brace-vs-scotland-enters-golden-boot-race-and-joins-brazil-elite/articleshow/131980415.cms
+        confidence: medium
+    open_data_gaps:
+      - official goal minutes, assists, xG, shots, SOT, possession, corners, cards, lineups, substitutions
+
+  - match_id: wc2026-md3-group-c-mar-hti
+    date_taipei: 2026-06-25
+    group: C
+    team_a: Morocco
+    team_a_code: MAR
+    score_a: 4
+    team_b: Haiti
+    team_b_code: HTI
+    score_b: 2
+    status: complete
+    matchday_phase: MD3
+    venue: Atlanta Stadium
+    detailed_stats_status: score_and_mechanism_partial
+    context_notes:
+      - Morocco beat Haiti 4-2.
+      - Haiti reportedly led twice before losing.
+      - Haiti scored twice in a single World Cup match for the first time.
+      - Haiti exited after three losses.
+      - Morocco had made four lineup changes and used a more aggressive setup with Ayoub El Kaabi starting.
+    sources:
+      - provider: Reuters Haiti post-tournament report
+        url_or_reference: https://www.reuters.com/sports/soccer/haiti-prove-they-belong-world-cup-stage-vow-return-2026-06-25/
+        confidence: high_for_score_and_context
+      - provider: Reuters lineup/tactical preview
+        url_or_reference: https://www.reuters.com/sports/soccer/morocco-make-four-changes-they-go-attack-v-haiti-2026-06-24/
+        confidence: partial_for_lineup_context
+    open_data_gaps:
+      - scorers, goal minutes, assists, official stats, cards, referee, full lineups
+
+  - match_id: wc2026-md3-group-e-ecu-ger
+    date_taipei: 2026-06-26
+    group: E
+    team_a: Ecuador
+    team_a_code: ECU
+    score_a: 2
+    team_b: Germany
+    team_b_code: GER
+    score_b: 1
+    status: complete
+    matchday_phase: MD3
+    venue: MetLife Stadium / New York New Jersey Stadium
+    detailed_stats_status: partial_event_data_secondary_source
+    events:
+      goals:
+        - minute: 2
+          team: Germany
+          scorer: Leroy Sane
+          mechanism: early_goal
+          source_confidence: medium
+        - minute: 9
+          team: Ecuador
+          scorer: Nilson Angulo
+          mechanism: long_range_strike
+          source_confidence: medium
+        - minute: 77
+          team: Ecuador
+          scorer: Gonzalo Plata
+          mechanism: open_play_winner
+          source_confidence: medium
+    context_notes:
+      - Ecuador won 2-1 from behind and advanced to the knockout stage.
+      - Germany also advanced despite the loss.
+    sources:
+      - provider: NY Post secondary report
+        url_or_reference: https://nypost.com/2026/06/25/sports/ecuador-stuns-germany-with-come-from-behind-world-cup-win/
+        confidence: medium
+    open_data_gaps:
+      - official source confirmation, xG, shots, SOT, possession, corners, cards, full lineups, referee
+
+  - match_id: wc2026-md3-group-e-cuw-civ
+    date_taipei: 2026-06-26
+    group: E
+    team_a: Curacao
+    team_a_code: CUW
+    score_a: 0
+    team_b: Ivory Coast
+    team_b_code: CIV
+    score_b: 2
+    status: complete
+    matchday_phase: MD3
+    venue: Lincoln Financial Field / Philadelphia Stadium
+    detailed_stats_status: partial_event_and_lineup_data
+    events:
+      goals:
+        - minute: null
+          team: Ivory Coast
+          scorer: Nicolas Pepe
+          mechanism: defensive_error_capitalized_by_yan_diomande
+          source_confidence: high
+        - minute: null
+          team: Ivory Coast
+          scorer: Nicolas Pepe
+          assist: Ibrahim Sangare
+          mechanism: through_ball_finish
+          source_confidence: high
+    lineups:
+      ivory_coast_starting_xi:
+        - Yahia Fofana
+        - Ousmane Diomande
+        - Christopher Operi
+        - Odilon Kossounou
+        - Guela Doue
+        - Franck Kessie
+        - Ibrahim Sangare
+        - Yan Diomande
+        - Amad Diallo
+        - Ange-Yoan Bonny
+        - Nicolas Pepe
+      curacao_starting_xi:
+        - Eloy Room
+        - Joshua Brenet
+        - Jurien Gaari
+        - Armando Obispo
+        - Sherel Floranus
+        - Deveron Fonville
+        - Juninho Bacuna
+        - Livano Comenencia
+        - Leandro Bacuna
+        - Tahith Chong
+        - Juergen Locadia
+    context_notes:
+      - Ivory Coast advanced to the World Cup knockout stage for the first time.
+      - Curacao were eliminated.
+    sources:
+      - provider: Reuters match report
+        url_or_reference: https://www.reuters.com/sports/soccer/ivory-coast-advance-pepe-scores-twice-send-tiny-curacao-home-2026-06-25/
+        confidence: high
+      - provider: Reuters lineup report
+        url_or_reference: https://www.reuters.com/sports/soccer/ivory-coast-make-changes-curacao-keep-same-lineup-2026-06-25/
+        confidence: high_for_lineups
+    open_data_gaps:
+      - goal minutes, official xG, shots, SOT, possession, corners, cards, referee, substitutions
+
+  - match_id: wc2026-md3-group-f-jpn-swe
+    date_taipei: 2026-06-26
+    group: F
+    team_a: Japan
+    team_a_code: JPN
+    score_a: 1
+    team_b: Sweden
+    team_b_code: SWE
+    score_b: 1
+    status: complete
+    matchday_phase: MD3
+    venue: Dallas Stadium
+    detailed_stats_status: partial_event_and_lineup_data
+    events:
+      goals:
+        - minute: 56
+          team: Japan
+          scorer: Daizen Maeda
+          mechanism: team_play
+          source_confidence: high
+        - minute: 62
+          team: Sweden
+          scorer: Anthony Elanga
+          mechanism: curling_shot
+          source_confidence: high
+    lineup_notes:
+      - Sweden called up Anthony Elanga to replace Benjamin Nygren.
+      - Japan made three changes.
+      - Sweden starting XI mentioned: Jacob Widell Zetterstrom, Victor Lindelof, Alexander Isak, Viktor Gyokeres, Anthony Elanga.
+      - Japan lineup mentioned: Zion Suzuki, Ritsu Doan, Daichi Kamada, Ayase Ueda.
+    context_notes:
+      - Japan finished second in Group F with five points.
+      - Sweden advanced as one of the best third-placed teams with four points.
+      - Zion Suzuki made key late saves, including denying Alexander Isak in stoppage time.
+    sources:
+      - provider: Reuters match report
+        url_or_reference: https://www.reuters.com/sports/soccer/japan-draw-1-1-with-sweden-finish-second-group-f-2026-06-26/
+        confidence: high
+      - provider: Reuters lineup report
+        url_or_reference: https://www.reuters.com/sports/soccer/sweden-boss-potter-calls-up-elanga-japan-make-three-changes-2026-06-25/
+        confidence: partial_for_lineups
+      - provider: Guardian live report
+        url_or_reference: https://www.theguardian.com/football/live/2026/jun/25/japan-v-sweden-world-cup-2026-live
+        confidence: high
+    open_data_gaps:
+      - official xG, full lineups, substitutions, shots, SOT, possession, corners, cards, referee
+
+  - match_id: wc2026-md3-group-f-tun-ned
+    date_taipei: 2026-06-26
+    group: F
+    team_a: Tunisia
+    team_a_code: TUN
+    score_a: 1
+    team_b: Netherlands
+    team_b_code: NED
+    score_b: 3
+    status: complete
+    matchday_phase: MD3
+    venue: Kansas City Stadium
+    detailed_stats_status: partial_event_data
+    events:
+      goals:
+        - minute: 3
+          team: Netherlands
+          scorer: Ellyes Skhiri
+          goal_type: own_goal
+          mechanism: early_own_goal
+          source_confidence: high
+        - minute: 7
+          team: Netherlands
+          scorer: Brian Brobbey
+          mechanism: close_range_finish_after_set_piece_move
+          source_confidence: high
+        - minute: 54
+          team: Tunisia
+          scorer: Hazem Mastouri
+          mechanism: header
+          source_confidence: high
+        - minute: null
+          team: Netherlands
+          scorer: Anis Slimane
+          goal_type: own_goal_deflection
+          assist_or_pre_assist: Tijjani Reijnders corner; Jan Paul van Hecke flick
+          mechanism: corner_deflection
+          source_confidence: high
+    context_notes:
+      - Netherlands finished top of Group F.
+      - Tunisia were eliminated after a poor tournament and the early dismissal of coach Sabri Lamouchi.
+    sources:
+      - provider: Reuters match report
+        url_or_reference: https://www.reuters.com/sports/soccer/dutch-ease-past-tunisia-3-1-finish-top-group-f-2026-06-26/
+        confidence: high
+    open_data_gaps:
+      - exact third Netherlands goal minute, official xG, shots, SOT, possession, corners, cards, full lineups, referee
+
+  - match_id: wc2026-md3-group-d-tur-usa
+    date_taipei: 2026-06-26
+    group: D
+    team_a: Turkey
+    team_a_code: TUR
+    score_a: null
+    team_b: United States
+    team_b_code: USA
+    score_b: null
+    status: final_score_not_verified_in_this_pass
+    matchday_phase: MD3
+    venue: Los Angeles Stadium / SoFi Stadium
+    detailed_stats_status: pre_match_lineups_only
+    context_notes:
+      - United States had already secured top spot in Group D before kickoff.
+      - Turkey were already eliminated before kickoff.
+      - US coach Mauricio Pochettino said players on yellow cards would not start.
+      - Christian Pulisic was listed on the bench in the lineup report.
+    lineups:
+      united_states_starting_xi:
+        - Matt Turner
+        - Auston Trusty
+        - Miles Robinson
+        - Mark McKenzie
+        - Joe Scally
+        - Giovanni Reyna
+        - Weston McKennie
+        - Sebastian Berhalter
+        - Ricardo Pepi
+        - Brenden Aaronson
+        - Timothy Weah
+      turkey_starting_xi:
+        - Ugurcan Cakir
+        - Zeki Celik
+        - Eren Elmali
+        - Abdulkerim Bardakci
+        - Ozan Kabak
+        - Arda Guler
+        - Salih Ozcan
+        - Orkun Kokcu
+        - Kenan Yildiz
+        - Baris Alper Yilmaz
+        - Oguz Aydin
+    sources:
+      - provider: Reuters pre-match report
+        url_or_reference: https://www.reuters.com/sports/soccer/us-wont-start-players-yellow-cards-against-turkey-says-pochettino-2026-06-25/
+        confidence: high_for_context
+      - provider: Reuters lineup report
+        url_or_reference: https://www.reuters.com/sports/soccer/pulisic-bench-us-turkey-make-wholesale-changes-2026-06-26/
+        confidence: high_for_lineups
+    open_data_gaps:
+      - final score, scorers, official stats, cards, substitutions, referee
+
+  - match_id: wc2026-md3-group-d-par-aus
+    date_taipei: 2026-06-26
+    group: D
+    team_a: Paraguay
+    team_a_code: PAR
+    score_a: null
+    team_b: Australia
+    team_b_code: AUS
+    score_b: null
+    status: final_score_not_verified_in_this_pass
+    matchday_phase: MD3
+    venue: San Francisco Bay Area Stadium
+    detailed_stats_status: pre_match_lineups_only
+    context_notes:
+      - Australia would advance with a win or draw.
+      - Paraguay needed a win to advance.
+      - Paraguay were without suspended Miguel Almiron.
+    lineups:
+      australia_starting_xi:
+        - Patrick Beach
+        - Alessandro Circati
+        - Jordan Bos
+        - Connor Metcalfe
+        - Aiden O'Neill
+        - Aziz Behich
+        - Nestory Irankunda
+        - Harry Souttar
+        - Cristian Volpato
+        - Jackson Irvine
+        - Lucas Herrington
+      paraguay_starting_xi:
+        - Orlando Gill
+        - Gustavo Velazquez
+        - Omar Alderete
+        - Juan Jose Caceres
+        - Diego Gomez
+        - Andres Cubas
+        - Gustavo Gomez
+        - Julio Enciso
+        - Gabriel Avalos
+        - Matias Galarza
+        - Alexandro Maidana
+    sources:
+      - provider: Reuters lineup report
+        url_or_reference: https://www.reuters.com/sports/soccer/australia-make-six-changes-paraguay-world-cup-clash-2026-06-26/
+        confidence: high_for_lineups
+      - provider: SB Nation scenario explainer
+        url_or_reference: https://www.sbnation.com/fifa-world-cup/1119067/world-cup-2026-how-can-the-usmnt-advance-out-of-group-d
+        confidence: medium_for_group_context
+    open_data_gaps:
+      - final score, scorers, official stats, cards, substitutions, referee
