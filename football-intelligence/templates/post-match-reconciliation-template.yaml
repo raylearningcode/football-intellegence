@@ -1,0 +1,213 @@
+# Post-match reconciliation template
+# Copy this file per match into an appropriate reconciliation file.
+# Do not fill unknown values from memory. Use null and missing_official_stats.
+
+match:
+  match_id:
+  competition:
+  stage:
+  group:
+  date:
+  venue:
+  referee:
+  teams:
+    home:
+    away:
+  final_score:
+    home:
+    away:
+  halftime_score:
+    home:
+    away:
+  status: complete
+
+source_summary:
+  official_match_centre:
+    provider:
+    url_or_reference:
+    retrieved_at:
+    confidence: official | high | medium | partial | missing
+  secondary_stat_sources:
+    - provider:
+      url_or_reference:
+      retrieved_at:
+      confidence:
+  narrative_sources:
+    - provider:
+      url_or_reference:
+      retrieved_at:
+      used_for: mechanism | quotes | injury | goal_description | other
+  conflicts:
+    - field:
+      source_a_value:
+      source_b_value:
+      resolution: accepted_a | accepted_b | conflict_pending_review
+
+pre_match_model:
+  model_version:
+  prediction_created_at:
+  probabilities:
+    home_win:
+    draw:
+    away_win:
+    over_0_5:
+    over_1_5:
+    over_2_5:
+    over_3_5:
+    btts_yes:
+  recommended_markets:
+    - market:
+      predicted_probability:
+      confidence:
+      tier: tier1_core | tier2_lean | tier3_live_only | no_bet
+      reason:
+  key_assumptions:
+    - assumption:
+      evidence_grade: A | B | C | D | X
+  data_quality_cap:
+
+actual_stats:
+  xg:
+    home:
+    away:
+    provider:
+  shots:
+    home:
+    away:
+  shots_on_target:
+    home:
+    away:
+  possession:
+    home:
+    away:
+  big_chances:
+    home:
+    away:
+  corners:
+    home:
+    away:
+    total:
+  fouls:
+    home:
+    away:
+  cards:
+    home_yellow:
+    away_yellow:
+    home_red:
+    away_red:
+  offsides:
+    home:
+    away:
+  passes:
+    home:
+    away:
+  pass_accuracy:
+    home:
+    away:
+  detailed_stats_status: official | high_confidence | partial | missing_official_stats
+
+events:
+  goals:
+    - minute:
+      team:
+      scorer:
+      assist:
+      mechanism: open_play | transition | corner | free_kick | penalty | own_goal | error | rebound | unknown
+      xg:
+      notes:
+  cards:
+    - minute:
+      team:
+      player:
+      card_type: yellow | second_yellow | red
+      reason:
+  substitutions:
+    - minute:
+      team:
+      player_out:
+      player_in:
+      tactical_effect:
+  injuries:
+    - minute:
+      team:
+      player:
+      impact:
+
+market_grading:
+  result_market:
+    prediction:
+    actual:
+    grade: hit | miss | push | partial | not_bet
+    reason:
+  goals_market:
+    prediction:
+    actual:
+    grade:
+    reason:
+  btts_market:
+    prediction:
+    actual:
+    grade:
+    reason:
+  corners_market:
+    prediction:
+    actual:
+    grade:
+    reason:
+  cards_market:
+    prediction:
+    actual:
+    grade:
+    reason:
+  player_props:
+    - player:
+      market:
+      prediction:
+      actual:
+      grade:
+      reason:
+  bet_construction:
+    recommended_bet:
+    result:
+    grade: good_construction | bad_construction | mixed | no_bet
+    dependency_issue:
+    unpriced_failure_mode:
+
+error_diagnosis:
+  primary_error_type: E1_input | E2_tactical | E3_coach | E4_game_state | E5_set_piece | E6_referee | E7_simulation | E8_market | E9_variance | none
+  secondary_error_types: []
+  repeatable_mechanism: true | false | unknown
+  what_model_got_right:
+    -
+  what_model_got_wrong:
+    -
+  decisive_mechanism:
+  variance_vs_model_error:
+  would_new_rule_have_helped_pre_match: true | false | unknown
+
+calibration_action:
+  action: no_change | update_existing_rule | create_new_rule | monitor_pattern | collect_more_data
+  rule_affected:
+  proposed_rule_text:
+  confidence_change:
+  market_confidence_adjustment:
+  profile_updates:
+    team_profiles:
+      - team:
+        update:
+    player_profiles:
+      - player:
+        update:
+    coach_profiles:
+      - coach:
+        update:
+
+open_data_gaps:
+  - field:
+    reason_missing:
+    required_source:
+    priority: critical | high | normal | low
+
+final_lesson:
+  one_sentence:
+  detailed:
